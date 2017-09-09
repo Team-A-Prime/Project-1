@@ -6,6 +6,8 @@
 
 var sqlite3 = require('sqlite3').verbose();
 
+var Event   = require('./event.js');
+
 /**
  * Database(path)
  * @pre: nothing
@@ -47,8 +49,34 @@ function Database(path, callback) {
 } // end of function Database
 
 /**
+ * Database#read_events()
+ * @pre: the db being initialized
+ * @post: the db is read
+ * @param: 'callback' is a function called when the read is complete
+ * @return: an array of the event objects read. if the db wasn't initialized, an
+ *          empty array is returned
+ */
+Database.prototype.read_events = function(callback) {
+    this.db.all("SELECT * FROM tb_events", function(err, rows) {
+        let events = [];
+
+        rows.forEach(function(row) {
+            let event = new Event();
+            event.name        = row.name;
+            event.description = row.description;
+            event.time_slots  = row.time_slots;
+            event.attendees   = row.attendees;
+
+            events.push(event);
+        });
+
+        if(callback) callback(events);
+    });
+} // end of Database#read_events
+
+/**
  * Database#write(query)
- * @pre: nothing
+ * @pre: the db being initialized
  * @post: the query is written to the db, or put on a queue_stack to be written
  * @return: nothing
  * @param: 'query', the query to execute
@@ -62,7 +90,7 @@ Database.prototype.write = function(query) {
     } else {
         this.query_stack.push(query);
     }
-}
+} // end of Database#write
 
 /**
  * Database#write_event(event)
