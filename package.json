@@ -5,12 +5,13 @@
   "main": "src/app.js",
   "dependencies": {
     "express": "^4.15.4",
+    "mocha": "^3.5.0",
     "sqlite3": "^3.1.10"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --harmony --use-strict ./src/app.js"
+    "start": "node --harmony --use-strict ./src/app.js",
+    "test": "mocha --harmony --use_strict"
   },
   "repository": {
     "type": "git",
