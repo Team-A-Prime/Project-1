@@ -40,12 +40,35 @@ class Slot {
     return slotsel
   }
 
+  createSlotGroup() {
+    let group = document.createElement('div')
+    group.appendChild(this.createStartSlot())
+    return group
+  }
+
+}
+
+class AddSlot {
+
+  constructor() {
+    this.slots = []
+  }
+
+  createButton() {
+    let button = document.createElement('button')
+    button.innerHTML = 'Add a Time'
+    button.addEventListener('click', event => {
+      let slot = new Slot($('select.t_format')[0].value == 24)
+      $('.t_slots')[0].appendChild(slot.createSlotGroup())
+    })
+    return button
+  }
 }
 
 $(() => {
   $('select.t_format')[0].addEventListener("change", event => {
-    let slot = new Slot($('select')[0].value == 24)
-    event.target.remove()
-    $('.t_slots')[0].appendChild(slot.createStartSlot())
-  }, false);
+    // TODO: Iterate through all time selectors and convert the format if necessary
+  })
+  let add_slot = new AddSlot()
+  $('.slot_button_wrap')[0].appendChild(add_slot.createButton())
 })
