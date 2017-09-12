@@ -4,6 +4,7 @@
   "description": "A web app solution for EECS-448 project 1",
   "main": "src/app.js",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "mocha": "^3.5.0",
     "sqlite3": "^3.1.10"
