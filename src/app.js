@@ -20,7 +20,7 @@ const Event         = require('./event.js');
 /* main */ (() => {
 
     let app      = express();
-    let database = new Database('test.db');
+    let database = new Database('storage/events.db');
 
     // Set up body-parser in the Express app
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,10 +35,14 @@ const Event         = require('./event.js');
 
         event.name        = req.body.name;
         event.description = req.body.description;
-        event.time_slots  = JSON.parse(req.body.time_slots);
-        event.attendees   = JSON.parse(req.body.attendees);
 
-        res.redirect('/');
+        /* todo: ensure these attrs are formatted correctly */
+        // event.time_slots  = JSON.parse(req.body.time_slots);
+        // event.attendees   = JSON.parse(req.body.attendees);
+
+        // database.write_event(event)
+
+        res.redirect('/create/');
     });
 
     // API for getting the current list of events
