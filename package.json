@@ -10,8 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node --harmony --use-strict ./src/app.js",
-    "test": "mocha --harmony --use_strict"
+    "start": "node ./src/app.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
