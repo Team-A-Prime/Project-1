@@ -1,0 +1,26 @@
+{
+  "name": "Project-1",
+  "version": "0.0.0",
+  "description": "A web app solution for EECS-448 project 1",
+  "main": "src/app.js",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "mocha": "^3.5.0",
+    "sqlite3": "^3.1.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/app.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Team-A-Prime/Project-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-A-Prime/Project-1/issues"
+  }
+}
