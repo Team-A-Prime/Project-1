@@ -18,23 +18,6 @@ const Event         = require('./event.js');
  * @return: nothing
  */
 /* main */ (() => {
-/*
-    let database = new Database('./storage/events.db', function() {
-        database.db.parallelize();
-    });
-    database.db.serialize();
-
-    let event = new Event();
-    event.name = "asdf";
-    event.description = "test desc";
-    event.uid = "69";
-
-    database.write_event(event);
-
-    database.read_event("69", function(event) {
-        console.log(event);
-    });
-*/
     let app      = express();
     let database = new Database('./storage/events.db', function() {
         database.db.parallelize();
