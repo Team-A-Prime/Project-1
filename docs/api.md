@@ -10,6 +10,7 @@ Retrieves events from the server.
 | `event_uid` | string | The server-assigned event UID. If empty, the server returns every event. |
 
 The return data is a JSON object formatted as:
+
 | Key | Type | Description | 
 | --- | --- | --- |
 | `name` | string | Name of the event |
@@ -31,6 +32,7 @@ Creates a new event on the server.
 | `owner` | string | The person who created the event |
 
 ### POST `/api/events/register`
+
 Registers a person to attend an event
 | Request variable | Type | Description | 
 | --- | --- | --- |
