@@ -64,15 +64,15 @@ const Event         = require('./event.js');
     // API for creating a new event
     app.post('/api/events/new', function(req, res) {    
         // Parses POST data to built an event
-        // returns undefined if parsing failed.
-        let parseEvent = (postData, success, failure) => {
+        let parseEvent = (success, failure) => {
             let event         = new Event();
             event.name        = req.body.name;
             event.description = req.body.description;
+            event.date        = req.body.date;
             event.owner       = req.body.owner;
             try {
-                event.time_slots = JSON.parse(req.body.time_slots);
-                if(!Array.isArray(event.time_slots) || !Array.isArray(event.attendees)) {
+                event.times = JSON.parse(req.body.times);
+                if(!Array.isArray(event.times)) {
                     throw "Not given valid arrays!";
                 }               
                 success(event);
@@ -82,7 +82,7 @@ const Event         = require('./event.js');
         };
 
         // Write the the db on successful parse, write to console on failure
-        parseEvent(req,
+        parseEvent(
             // success
             function(event) {
                 res.status(200); // ok
@@ -91,7 +91,37 @@ const Event         = require('./event.js');
 
             // error
             function(err) {
-                res.status(500).json({error: err})
+                res.status(500).json({error: err});
+            });
+    });
+
+    // API for adding a person to an event
+    app.post('/api/events/register', function(req, res) {
+        let parseRegister = (success, failure) => {
+            let attendee   = {};
+            attendee.event = req.body.event_uid;
+            attendee.name  = req.body.name;
+            try {
+                attendee.times = JSON.parse(req.body.times);
+                if(!Array.isArray(attendee.times)) {
+                    throw "Not given valid arrays!";
+                }               
+                success(attendee);
+            } catch(e) {
+                failure(e);
+            }
+        };
+
+        parseRegister(
+            // success
+            function(attendee) {
+                database.register(attendee);
+                res.status(200);
+            },
+
+            // failure
+            function(err) {
+                res.status(500).json({error: err});
             });
     });
 

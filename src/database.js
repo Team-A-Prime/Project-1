@@ -9,7 +9,7 @@ var sqlite3 = require('sqlite3').verbose();
 var Event   = require('./event.js');
 
 /**
- * Database(path)
+ * Database(path, callback)
  * @pre: nothing
  * @post: a database is created on disk at path
  * @return: a Database object
@@ -39,7 +39,7 @@ function Database(path, callback) {
 }; // end of function Database
 
 /**
- * Database#keyval_parse()
+ * Database#keyval_parse(event, key, value, paylod)
  * @pre: nothing
  * @post: the event parameter is modified
  * @param: 'event' is the event to modify, 'key' and 'value' are the given keyval pair, 'payload' is an optional payload
@@ -64,7 +64,7 @@ Database.prototype.keyval_parse = function(event, key, value, paylod) {
 }; // end of function Database#keyval_parse
 
 /**
- * Database#read_event()
+ * Database#read_event(uid, callback)
  * @pre: the db being initialized
  * @post: the db is read
  * @param: 'uid' is the event uid to get, callback' is a function called when the read is complete
@@ -86,7 +86,7 @@ Database.prototype.read_event = function(uid, callback) {
 }; // end of Database#read_event
 
 /**
- * Database#read_events()
+ * Database#read_events(callback)
  * @pre: the db being initialized
  * @post: the db is read
  * @param: 'callback' is a function called when the read is complete
@@ -115,6 +115,24 @@ Database.prototype.read_events = function(callback) {
         });
     });
 }; // end of Database#read_events
+
+/**
+ * Database#register(attendee)
+ * @pre: the db is initialized properly
+ * @post: attendee is registered the given event
+ * @return: nothing
+ * @param: 'attendee', the person to register
+ */
+Database.prototype.register = function(attendee) {
+    let query = "INSERT INTO tb_events (uid, key, value, paylod) VALUES "
+              + "("
+              + "'" + attendee.uid "', "
+              + "attendee, "
+              + "'" + attendee.name + "'"
+              + "'" + attendee.times + "'"
+              + " );";
+    obj.db.run(query);
+} // end of Database#register
 
 /**
  * Database#write_event(event)
