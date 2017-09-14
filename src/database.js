@@ -39,13 +39,13 @@ function Database(path, callback) {
 }; // end of function Database
 
 /**
- * Database#keyval_parse(event, key, value, paylod)
+ * Database#keyval_parse(event, key, value, payload)
  * @pre: nothing
  * @post: the event parameter is modified
  * @param: 'event' is the event to modify, 'key' and 'value' are the given keyval pair, 'payload' is an optional payload
  * @return: nothing
  */
-Database.prototype.keyval_parse = function(event, key, value, paylod) {
+Database.prototype.keyval_parse = function(event, key, value, payload) {
     if(key == "name") {
         event.name = value;
     }
@@ -60,6 +60,12 @@ Database.prototype.keyval_parse = function(event, key, value, paylod) {
     }
     if(key == "owner") {
         event.owner = value;
+    }
+    if(key == "attendee") {
+        let attendee = {};
+        attendee.name  = value;
+        attendee.times = payload;
+        event.attendees.push(attendee);
     }
 }; // end of function Database#keyval_parse
 
@@ -76,7 +82,7 @@ Database.prototype.read_event = function(uid, callback) {
 
     this.db.each("SELECT * FROM tb_events WHERE uid = '" + uid + "';", function(err, row) {
         event.uid = uid;
-        obj.keyval_parse(event, row.key, row.value, row.paylod);
+        obj.keyval_parse(event, row.key, row.value, row.payload);
     }, function(err, rows) {
         if(rows != undefined && rows != 0) {
             callback(event);
@@ -127,14 +133,14 @@ Database.prototype.read_events = function(callback) {
  * @param: 'attendee', the person to register
  */
 Database.prototype.register = function(attendee) {
-    let query = "INSERT INTO tb_events (uid, key, value, paylod) VALUES "
+    let query = "INSERT INTO tb_events (uid, key, value, payload) VALUES "
               + "("
               + "'" + attendee.event + "', "
-              + "attendee, "
-              + "'" + attendee.name + "'"
+              + "'attendee', "
+              + "'" + attendee.name + "', "
               + "'" + attendee.times + "'"
               + " );";
-    obj.db.run(query);
+    this.db.run(query);
 } // end of Database#register
 
 /**
@@ -160,7 +166,7 @@ Database.prototype.write_event = function(event) {
      ["description", event.description],
      ["date",        event.date],
      ["times",       event.times],
-     ["owner",      event.owner]]
+     ["owner",       event.owner]]
      .forEach(function(keyval) {
         write_keyval(keyval[0], keyval[1]);
     });

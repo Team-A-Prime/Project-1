@@ -61,32 +61,14 @@ const Event         = require('./event.js');
 
     // API for adding a person to an event
     app.post('/api/events/register', function(req, res) {
-        let parseRegister = (success, failure) => {
-            let attendee   = {};
-            attendee.event = req.body.event_uid;
-            attendee.name  = req.body.name;
-            try {
-                attendee.times = JSON.parse(req.body.times);
-                if(!Array.isArray(attendee.times)) {
-                    throw "Not given valid arrays!";
-                }               
-                success(attendee);
-            } catch(e) {
-                failure(e);
-            }
-        };
+        let attendee   = {};
+        attendee.event = req.body.event_uid;
+        attendee.name  = req.body.name;
+        attendee.times = req.body.times;
 
-        parseRegister(
-            // success
-            function(attendee) {
-                database.register(attendee);
-                res.status(200);
-            },
+        database.register(attendee);
 
-            // failure
-            function(err) {
-                res.status(500).json({error: err});
-            });
+        res.status(200).json({status: "ok"});
     });
 
     // Start the server
