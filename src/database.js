@@ -16,7 +16,7 @@ var Event   = require('./event.js');
  * @param: 'path', the path for the database
  */
 function Database(path, callback) {
-    this.path        = path;
+    this.path = path;
 
     const create_table = "CREATE TABLE IF NOT EXISTS tb_events"
                        + "("
@@ -36,7 +36,54 @@ function Database(path, callback) {
             if(callback) callback();
         });
     });
-} // end of function Database
+}; // end of function Database
+
+/**
+ * Database#keyval_parse()
+ * @pre: nothing
+ * @post: the event parameter is modified
+ * @param: 'event' is the event to modify, 'key' and 'value' are the given keyval pair, 'payload' is an optional payload
+ * @return: nothing
+ */
+Database.prototype.keyval_parse = function(event, key, value, paylod) {
+    if(key == "name") {
+        event.name = value;
+    }
+    if(key == "description") {
+        event.description = value;
+    }
+    if(key == "date") {
+        event.date = value;
+    }
+    if(key == "times") {
+        event.times = value;
+    }
+    if(key == "owner") {
+        event.owner = value;
+    }
+}; // end of function Database#keyval_parse
+
+/**
+ * Database#read_event()
+ * @pre: the db being initialized
+ * @post: the db is read
+ * @param: 'uid' is the event uid to get, callback' is a function called when the read is complete
+ * @return: nothing
+ */
+Database.prototype.read_event = function(uid, callback) {
+    let event = new Event();
+    let obj   = this;
+    this.db.each("SELECT * FROM tb_events WHERE uid = " + uid + ";", function(err, row) {
+        event.uid = uid;
+        obj.keyval_parse(event, row.key, row.value, row.paylod);
+    }, function(err, rows) {
+        if(rows != undefined && rows != 0) {
+            callback(event);
+        } else {
+            callback(null);
+        }
+    });
+}; // end of Database#read_event
 
 /**
  * Database#read_events()
@@ -49,44 +96,25 @@ function Database(path, callback) {
 Database.prototype.read_events = function(callback) {
     let events = [];
 
-    let event_parse = function(event, key, value, paylod) {
-        if(key == "name") {
-            event.name = value;
-        }
-        if(key == "description") {
-            event.description = value;
-        }
-        if(key == "date") {
-            event.date = value;
-        }
-        if(key == "times") {
-            event.times = value;
-        }
-        if(key == "owner") {
-            event.owner = value;
-        }
-        // todo: attendees
-    };
-
     let obj = this;
     events = new Array();
 
     // Get all distinct event UIDs
     this.db.all("SELECT DISTINCT uid FROM tb_events", function(uid_err, uid_rows) {
 
+        // Iterate through each UID
         uid_rows.forEach(function(uid_row) {
-            let event = new Event();
-            event.uid = uid_row.uid;
 
-            obj.db.each("SELECT * FROM tb_events WHERE uid = '" + event.uid + "';", function(evnt_err, evnt_row) {
-                event_parse(event, evnt_row.key, evnt_row.value, evnt_row.paylod);
-            }, function() {
+            // Get the event object with this UID from the db
+            obj.read_event(uid_row.uid, function(event) {
                 events.push(event);
-                if(events.length == uid_rows.length) callback(events);
+                if(events.length == uid_rows.length) {
+                    callback(events);
+                }
             });
         });
     });
-} // end of Database#read_events
+}; // end of Database#read_events
 
 /**
  * Database#write_event(event)
@@ -115,6 +143,6 @@ Database.prototype.write_event = function(event) {
      .forEach(function(keyval) {
         write_keyval(keyval[0], keyval[1]);
     });
-} // end of function Database#write_event
+}; // end of function Database#write_event
 
 module.exports = Database;
