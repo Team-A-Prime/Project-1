@@ -73,7 +73,8 @@ Database.prototype.keyval_parse = function(event, key, value, paylod) {
 Database.prototype.read_event = function(uid, callback) {
     let event = new Event();
     let obj   = this;
-    this.db.each("SELECT * FROM tb_events WHERE uid = " + uid + ";", function(err, row) {
+
+    this.db.each("SELECT * FROM tb_events WHERE uid = '" + uid + "';", function(err, row) {
         event.uid = uid;
         obj.keyval_parse(event, row.key, row.value, row.paylod);
     }, function(err, rows) {
@@ -101,10 +102,12 @@ Database.prototype.read_events = function(callback) {
 
     // Get all distinct event UIDs
     this.db.all("SELECT DISTINCT uid FROM tb_events", function(uid_err, uid_rows) {
+        if(uid_rows.length == 0) {
+            callback([]);
+        }
 
         // Iterate through each UID
         uid_rows.forEach(function(uid_row) {
-
             // Get the event object with this UID from the db
             obj.read_event(uid_row.uid, function(event) {
                 events.push(event);
@@ -126,7 +129,7 @@ Database.prototype.read_events = function(callback) {
 Database.prototype.register = function(attendee) {
     let query = "INSERT INTO tb_events (uid, key, value, paylod) VALUES "
               + "("
-              + "'" + attendee.uid "', "
+              + "'" + attendee.event + "', "
               + "attendee, "
               + "'" + attendee.name + "'"
               + "'" + attendee.times + "'"
@@ -157,7 +160,7 @@ Database.prototype.write_event = function(event) {
      ["description", event.description],
      ["date",        event.date],
      ["times",       event.times],
-     ["owner"],      event.owner]
+     ["owner",      event.owner]]
      .forEach(function(keyval) {
         write_keyval(keyval[0], keyval[1]);
     });

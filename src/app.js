@@ -25,7 +25,7 @@ const Event         = require('./event.js');
     database.db.serialize();
 
     // Set up body-parser in the Express app
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
     // Set up routing
@@ -45,37 +45,18 @@ const Event         = require('./event.js');
     });
 
     // API for creating a new event
-    app.post('/api/events/new', function(req, res) {    
-        // Parses POST data to built an event
-        let parseEvent = (success, failure) => {
-            let event         = new Event();
-            event.name        = req.body.name;
-            event.description = req.body.description;
-            event.date        = req.body.date;
-            event.owner       = req.body.owner;
-            try {
-                event.times = JSON.parse(req.body.times);
-                if(!Array.isArray(event.times)) {
-                    throw "Not given valid arrays!";
-                }               
-                success(event);
-            } catch(e) {
-                failure(e);
-            }
-        };
+    app.post('/api/events/new', function(req, res) {        
+        let event         = new Event();
+        event.name        = req.body.name;
+        event.description = req.body.description;
+        event.date        = req.body.date;
+        event.owner       = req.body.owner;
+        event.times       = req.body.times;
+        event.uid         = event.hash().substr(0, 11);
 
-        // Write the the db on successful parse, write to console on failure
-        parseEvent(
-            // success
-            function(event) {
-                res.status(200); // ok
-                database.write_event(event);
-            },
+        database.write_event(event);
 
-            // error
-            function(err) {
-                res.status(500).json({error: err});
-            });
+        res.status(200).json({status: "ok"});
     });
 
     // API for adding a person to an event

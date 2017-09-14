@@ -30,22 +30,20 @@ function Event() {
 } // end of function Event
 
 /**
- * Event#new_hash()
+ * Event#hash()
  * @pre: nothing
  * @post: nothing
- * @return: a sha256 hash unique to the event name and time
+ * @return: a sha256 hash unique to the event name and time, randomly nonced
  */
-Event.prototype.new_hash = function() {
+Event.prototype.hash = function() {
     let sha256 = crypto.createHash('sha256');
     sha256.update(this.name);
     sha256.update(this.description);
+    sha256.update(this.times);
     sha256.update("" + (Math.random() * Math.pow(2, 32))); // nonce
-    this.times.forEach(function(ele, idx) {
-        sha256.update("" + ele);
-    });
 
     return sha256.digest('hex');
-} // end of function Event#new_hash
+} // end of function Event#hash
 
 
 module.exports = Event;
