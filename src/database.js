@@ -39,6 +39,18 @@ function Database(path, callback) {
 }; // end of function Database
 
 /**
+ * Database#delete_event(event_uid)
+ * @pre: the db is initialized properly
+ * @post: the event with event_uid is deleted
+ * @return: nothing
+ * @param: 'event_uid', event to delete
+ */
+Database.prototype.delete_event = function(event_uid) {
+    let query = "DELETE FROM tb_events WHERE uid = '" + event_uid + "';";
+    this.db.run(query);
+} // end of Database#delete_event
+
+/**
  * Database#keyval_parse(event, key, value, payload)
  * @pre: nothing
  * @post: the event parameter is modified

@@ -71,6 +71,18 @@ const Event         = require('./event.js');
         res.status(200).json({status: "ok"});
     });
 
+    // API for deleting an event
+    app.post('/api/events/delete', function(req, res) {
+
+        if(req.body.event_uid != undefined) {
+            database.delete_event(req.body.event_uid);
+            res.status(200).json({status: "ok"});
+        } else {
+            res.status(500).json({status: "no event uid sent!"});
+        }
+
+    });
+
     // Start the server
     app.listen(8080);
 })(); // end of anononymous main
