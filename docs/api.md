@@ -34,6 +34,7 @@ Creates a new event on the server.
 ### POST `/api/events/register`
 
 Registers a person to attend an event
+
 | Request variable | Type | Description | 
 | --- | --- | --- |
 | `event_uid` | string | UID of the event |
