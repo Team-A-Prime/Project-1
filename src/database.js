@@ -17,17 +17,13 @@ var Event   = require('./event.js');
  */
 function Database(path, callback) {
     this.path        = path;
-    this.initialized = false;
-    this.query_stack = [];
 
     const create_table = "CREATE TABLE IF NOT EXISTS tb_events"
                        + "("
-                       + "_id INTEGER PRIMARY KEY, "
-                       + "hash TEXT NOT NULL, "
-                       + "name TEXT NOT NULL, "
-                       + "description TEXT, "
-                       + "time_slots TEXT, "
-                       + "attendees TEXT"
+                       + "uid TEXT NOT NULL, "
+                       + "key TEXT NOT NULL, "
+                       + "value TEXT NOT NULL, "
+                       + "payload TEXT "
                        + ");";
 
     let obj = this; // used to access 'this' in the following closure
@@ -37,12 +33,6 @@ function Database(path, callback) {
 
         // create primary table
         obj.db.run(create_table, function() {
-            obj.initialized = true;
-
-            obj.query_stack.forEach(function(ele) {
-                obj.db.run(ele);
-            });
-
             if(callback) callback();
         });
     });
@@ -57,40 +47,46 @@ function Database(path, callback) {
  *          empty array is returned
  */
 Database.prototype.read_events = function(callback) {
-    this.db.all("SELECT * FROM tb_events", function(err, rows) {
-        let events = [];
+    let events = [];
 
-        rows.forEach(function(row) {
+    let event_parse = function(event, key, value, paylod) {
+        if(key == "name") {
+            event.name = value;
+        }
+        if(key == "description") {
+            event.description = value;
+        }
+        if(key == "date") {
+            event.date = value;
+        }
+        if(key == "times") {
+            event.times = value;
+        }
+        if(key == "owner") {
+            event.owner = value;
+        }
+        // todo: attendees
+    };
+
+    let obj = this;
+    events = new Array();
+
+    // Get all distinct event UIDs
+    this.db.all("SELECT DISTINCT uid FROM tb_events", function(uid_err, uid_rows) {
+
+        uid_rows.forEach(function(uid_row) {
             let event = new Event();
-            event.name        = row.name;
-            event.description = row.description;
-            event.time_slots  = row.time_slots;
-            event.attendees   = row.attendees;
+            event.uid = uid_row.uid;
 
-            events.push(event);
+            obj.db.each("SELECT * FROM tb_events WHERE uid = '" + event.uid + "';", function(evnt_err, evnt_row) {
+                event_parse(event, evnt_row.key, evnt_row.value, evnt_row.paylod);
+            }, function() {
+                events.push(event);
+                if(events.length == uid_rows.length) callback(events);
+            });
         });
-
-        if(callback) callback(events);
     });
 } // end of Database#read_events
-
-/**
- * Database#write(query)
- * @pre: the db being initialized
- * @post: the query is written to the db, or put on a queue_stack to be written
- * @return: nothing
- * @param: 'query', the query to execute
- * @note: this function exists because some queries fail if they are ran right
- *        after the db is created. To ensure none fail, if a query is requested
- *        before the db is init'ed, it is put in an array to be handled later
- */
-Database.prototype.write = function(query) {
-    if(this.initialized) {
-        this.db.run(query);
-    } else {
-        this.query_stack.push(query);
-    }
-} // end of Database#write
 
 /**
  * Database#write_event(event)
@@ -100,16 +96,25 @@ Database.prototype.write = function(query) {
  * @param: 'event', the object to be written to the db
  */
 Database.prototype.write_event = function(event) {
-    let query = 'INSERT INTO tb_events (hash, name, description, time_slots, attendees) VALUES'
-          + '('
-          + '\'' + event.hash().substring(0, 8) + '\', '
-          + '\'' + event.name + '\', '
-          + '\'' + event.description + '\', '
-          + '\'' + event.time_slots + '\', '
-          + '\'' + event.attendees + '\''
-          + ');';
+    let obj = this;
+    let write_keyval = function(key, val) {
+        let query = "INSERT INTO tb_events (uid, key, value) VALUES "
+                  + "("
+                  + "'" + event.uid + "', "
+                  + "'" + key + "', "
+                  + "'" + val + "'"
+                  + " );";
+        obj.db.run(query);
+    };
 
-    this.write(query);
+    [["name",        event.name],
+     ["description", event.description],
+     ["date",        event.date],
+     ["times",       event.times],
+     ["owner"],      event.owner]
+     .forEach(function(keyval) {
+        write_keyval(keyval[0], keyval[1]);
+    });
 } // end of function Database#write_event
 
 module.exports = Database;
