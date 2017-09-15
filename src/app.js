@@ -33,7 +33,7 @@ const Event         = require('./event.js');
 
     // API for getting the current list of events
     app.get('/api/events', function(req, res) {
-        if(req.query.uid != undefined) {
+        if (req.query.uid != undefined) {
             database.read_event(req.query.uid, function(event) {
                 res.send(JSON.stringify(event));
             });
@@ -62,7 +62,7 @@ const Event         = require('./event.js');
     // API for adding a person to an event
     app.post('/api/events/register', function(req, res) {
         let attendee   = {};
-        attendee.event = req.body.event_uid;
+        attendee.event = req.body.uid;
         attendee.name  = req.body.name;
         attendee.times = req.body.times;
 
@@ -74,8 +74,8 @@ const Event         = require('./event.js');
     // API for deleting an event
     app.post('/api/events/delete', function(req, res) {
 
-        if(req.body.event_uid != undefined) {
-            database.delete_event(req.body.event_uid);
+        if (req.body.uid != undefined) {
+            database.delete_event(req.body.uid);
             res.status(200).json({status: "ok"});
         } else {
             res.status(500).json({status: "no event uid sent!"});

@@ -7,7 +7,7 @@ Retrieves events from the server.
 
 | Request variable | Type | Description | 
 | --- | --- | --- |
-| `event_uid` | string | The server-assigned event UID. If empty, the server returns every event. |
+| `uid` | string | The server-assigned event UID. If empty, the server returns every event. |
 
 The return data is a JSON object formatted as:
 
@@ -37,7 +37,7 @@ Registers a person to attend an event
 
 | Request variable | Type | Description | 
 | --- | --- | --- |
-| `event_uid` | string | UID of the event |
+| `uid` | string | UID of the event |
 | `name` | string | Name of the attendee |
 | `times` | array | Integer array of the times the user is attending |
 
@@ -46,4 +46,4 @@ Deletes a given event from the server.
 
 | Request variable | Type | Description | 
 | --- | --- | --- |
-| `event_uid` | string | UID of the event to delete. |
+| `uid` | string | UID of the event to delete. |
