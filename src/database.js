@@ -9,25 +9,21 @@ var sqlite3 = require('sqlite3').verbose();
 var Event   = require('./event.js');
 
 /**
- * Database(path)
+ * Database(path, callback)
  * @pre: nothing
  * @post: a database is created on disk at path
  * @return: a Database object
  * @param: 'path', the path for the database
  */
 function Database(path, callback) {
-    this.path        = path;
-    this.initialized = false;
-    this.query_stack = [];
+    this.path = path;
 
     const create_table = "CREATE TABLE IF NOT EXISTS tb_events"
                        + "("
-                       + "_id INTEGER PRIMARY KEY, "
-                       + "hash TEXT NOT NULL, "
-                       + "name TEXT NOT NULL, "
-                       + "description TEXT, "
-                       + "time_slots TEXT, "
-                       + "attendees TEXT"
+                       + "uid TEXT NOT NULL, "
+                       + "key TEXT NOT NULL, "
+                       + "value TEXT NOT NULL, "
+                       + "payload TEXT "
                        + ");";
 
     let obj = this; // used to access 'this' in the following closure
@@ -37,19 +33,79 @@ function Database(path, callback) {
 
         // create primary table
         obj.db.run(create_table, function() {
-            obj.initialized = true;
-
-            obj.query_stack.forEach(function(ele) {
-                obj.db.run(ele);
-            });
-
             if(callback) callback();
         });
     });
-} // end of function Database
+}; // end of function Database
 
 /**
- * Database#read_events()
+ * Database#delete_event(event_uid)
+ * @pre: the db is initialized properly
+ * @post: the event with event_uid is deleted
+ * @return: nothing
+ * @param: 'event_uid', event to delete
+ */
+Database.prototype.delete_event = function(event_uid) {
+    let query = "DELETE FROM tb_events WHERE uid = '" + event_uid + "';";
+    this.db.run(query);
+} // end of Database#delete_event
+
+/**
+ * Database#keyval_parse(event, key, value, payload)
+ * @pre: nothing
+ * @post: the event parameter is modified
+ * @param: 'event' is the event to modify, 'key' and 'value' are the given keyval pair, 'payload' is an optional payload
+ * @return: nothing
+ */
+Database.prototype.keyval_parse = function(event, key, value, payload) {
+    if(key == "name") {
+        event.name = value;
+    }
+    if(key == "description") {
+        event.description = value;
+    }
+    if(key == "date") {
+        event.date = value;
+    }
+    if(key == "times") {
+        event.times = value;
+    }
+    if(key == "owner") {
+        event.owner = value;
+    }
+    if(key == "attendee") {
+        let attendee = {};
+        attendee.name  = value;
+        attendee.times = payload;
+        event.attendees.push(attendee);
+    }
+}; // end of function Database#keyval_parse
+
+/**
+ * Database#read_event(uid, callback)
+ * @pre: the db being initialized
+ * @post: the db is read
+ * @param: 'uid' is the event uid to get, callback' is a function called when the read is complete
+ * @return: nothing
+ */
+Database.prototype.read_event = function(uid, callback) {
+    let event = new Event();
+    let obj   = this;
+
+    this.db.each("SELECT * FROM tb_events WHERE uid = '" + uid + "';", function(err, row) {
+        event.uid = uid;
+        obj.keyval_parse(event, row.key, row.value, row.payload);
+    }, function(err, rows) {
+        if(rows != undefined && rows != 0) {
+            callback(event);
+        } else {
+            callback(null);
+        }
+    });
+}; // end of Database#read_event
+
+/**
+ * Database#read_events(callback)
  * @pre: the db being initialized
  * @post: the db is read
  * @param: 'callback' is a function called when the read is complete
@@ -57,40 +113,47 @@ function Database(path, callback) {
  *          empty array is returned
  */
 Database.prototype.read_events = function(callback) {
-    this.db.all("SELECT * FROM tb_events", function(err, rows) {
-        let events = [];
+    let events = [];
 
-        rows.forEach(function(row) {
-            let event = new Event();
-            event.name        = row.name;
-            event.description = row.description;
-            event.time_slots  = row.time_slots;
-            event.attendees   = row.attendees;
+    let obj = this;
+    events = new Array();
 
-            events.push(event);
+    // Get all distinct event UIDs
+    this.db.all("SELECT DISTINCT uid FROM tb_events", function(uid_err, uid_rows) {
+        if(uid_rows.length == 0) {
+            callback([]);
+        }
+
+        // Iterate through each UID
+        uid_rows.forEach(function(uid_row) {
+            // Get the event object with this UID from the db
+            obj.read_event(uid_row.uid, function(event) {
+                events.push(event);
+                if(events.length == uid_rows.length) {
+                    callback(events);
+                }
+            });
         });
-
-        if(callback) callback(events);
     });
-} // end of Database#read_events
+}; // end of Database#read_events
 
 /**
- * Database#write(query)
- * @pre: the db being initialized
- * @post: the query is written to the db, or put on a queue_stack to be written
+ * Database#register(attendee)
+ * @pre: the db is initialized properly
+ * @post: attendee is registered the given event
  * @return: nothing
- * @param: 'query', the query to execute
- * @note: this function exists because some queries fail if they are ran right
- *        after the db is created. To ensure none fail, if a query is requested
- *        before the db is init'ed, it is put in an array to be handled later
+ * @param: 'attendee', the person to register
  */
-Database.prototype.write = function(query) {
-    if(this.initialized) {
-        this.db.run(query);
-    } else {
-        this.query_stack.push(query);
-    }
-} // end of Database#write
+Database.prototype.register = function(attendee) {
+    let query = "INSERT INTO tb_events (uid, key, value, payload) VALUES "
+              + "("
+              + "'" + attendee.event + "', "
+              + "'attendee', "
+              + "'" + attendee.name + "', "
+              + "'" + attendee.times + "'"
+              + " );";
+    this.db.run(query);
+} // end of Database#register
 
 /**
  * Database#write_event(event)
@@ -100,16 +163,25 @@ Database.prototype.write = function(query) {
  * @param: 'event', the object to be written to the db
  */
 Database.prototype.write_event = function(event) {
-    let query = 'INSERT INTO tb_events (hash, name, description, time_slots, attendees) VALUES'
-          + '('
-          + '\'' + event.hash().substring(0, 8) + '\', '
-          + '\'' + event.name + '\', '
-          + '\'' + event.description + '\', '
-          + '\'' + event.time_slots + '\', '
-          + '\'' + event.attendees + '\''
-          + ');';
+    let obj = this;
+    let write_keyval = function(key, val) {
+        let query = "INSERT INTO tb_events (uid, key, value) VALUES "
+                  + "("
+                  + "'" + event.uid + "', "
+                  + "'" + key + "', "
+                  + "'" + val + "'"
+                  + " );";
+        obj.db.run(query);
+    };
 
-    this.write(query);
-} // end of function Database#write_event
+    [["name",        event.name],
+     ["description", event.description],
+     ["date",        event.date],
+     ["times",       event.times],
+     ["owner",       event.owner]]
+     .forEach(function(keyval) {
+        write_keyval(keyval[0], keyval[1]);
+    });
+}; // end of function Database#write_event
 
 module.exports = Database;

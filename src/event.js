@@ -23,22 +23,24 @@ var crypto = require('crypto');
 function Event() {
     this.name        = "";
     this.description = "";
-    this.time_slots  = [];
+    this.times       = [];
+    this.owner       = "";
     this.attendees   = [];
+    this.uid         = "";
 } // end of function Event
 
 /**
  * Event#hash()
  * @pre: nothing
  * @post: nothing
- * @return: a sha256 hash unique to the event name and time
+ * @return: a sha256 hash unique to the event name and time, randomly nonced
  */
 Event.prototype.hash = function() {
     let sha256 = crypto.createHash('sha256');
     sha256.update(this.name);
-    this.time_slots.forEach(function(ele, idx) {
-        sha256.update("" + ele);
-    });
+    sha256.update(this.description);
+    sha256.update(this.times);
+    sha256.update("" + (Math.random() * Math.pow(2, 32))); // nonce
 
     return sha256.digest('hex');
 } // end of function Event#hash
