@@ -80,10 +80,11 @@ $(() => {
 
   $('button.submit')[0].addEventListener("click", event => {
     let payload = {
-      title: $('input.title')[0].value,
-      name: $('input.name')[0].value,
+      name: $('input.title')[0].value,
+      description: $('input.description')[0].value,
       date: $('input.date')[0].value,
-      time_slots: slot_adder.getTimes()
+      owner: $('input.name')[0].value,
+      times: slot_adder.getTimes()
     }
     
     fetch("/api/events/new/", {
