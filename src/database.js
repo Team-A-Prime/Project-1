@@ -33,7 +33,7 @@ function Database(path, callback) {
 
         // create primary table
         obj.db.run(create_table, function() {
-            if(callback) callback();
+            if (callback) callback();
         });
     });
 }; // end of function Database
@@ -58,22 +58,22 @@ Database.prototype.delete_event = function(event_uid) {
  * @return: nothing
  */
 Database.prototype.keyval_parse = function(event, key, value, payload) {
-    if(key == "name") {
+    if (key == "name") {
         event.name = value;
     }
-    if(key == "description") {
+    if (key == "description") {
         event.description = value;
     }
-    if(key == "date") {
+    if (key == "date") {
         event.date = value;
     }
-    if(key == "times") {
+    if (key == "times") {
         event.times = value;
     }
-    if(key == "owner") {
+    if (key == "owner") {
         event.owner = value;
     }
-    if(key == "attendee") {
+    if (key == "attendee") {
         let attendee = {};
         attendee.name  = value;
         attendee.times = payload;
@@ -95,8 +95,11 @@ Database.prototype.read_event = function(uid, callback) {
     this.db.each("SELECT * FROM tb_events WHERE uid = '" + uid + "';", function(err, row) {
         event.uid = uid;
         obj.keyval_parse(event, row.key, row.value, row.payload);
+        if (typeof event.times === 'string') {
+          event.times = event.times.split(',').map(time=>+time)
+        }
     }, function(err, rows) {
-        if(rows != undefined && rows != 0) {
+        if (rows != undefined && rows != 0) {
             callback(event);
         } else {
             callback(null);
@@ -120,7 +123,7 @@ Database.prototype.read_events = function(callback) {
 
     // Get all distinct event UIDs
     this.db.all("SELECT DISTINCT uid FROM tb_events", function(uid_err, uid_rows) {
-        if(uid_rows.length == 0) {
+        if (uid_rows.length == 0) {
             callback([]);
         }
 
@@ -129,7 +132,7 @@ Database.prototype.read_events = function(callback) {
             // Get the event object with this UID from the db
             obj.read_event(uid_row.uid, function(event) {
                 events.push(event);
-                if(events.length == uid_rows.length) {
+                if (events.length == uid_rows.length) {
                     callback(events);
                 }
             });

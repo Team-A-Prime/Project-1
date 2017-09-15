@@ -1,30 +1,34 @@
 class EventPage {
-  getEventName(eventName) {
+  constructor(event) {
+    this.event = event
+  }
+
+  getEventName() {
     let eventName = document.createElement('span')
-    eventName.innerHTML = someEvent[i].name
+    eventName.innerHTML = this.event.name
     return eventName
   }
 
-  getEventDate(eventDate) {
-    let eventDate = document.createElement('span')s
+  getEventDate() {
+    let eventDate = document.createElement('span')
     // TODO: Add Date parsing?
-    eventDate.innerHTML = someEvent[i].date
+    eventDate.innerHTML = this.event.date
     return eventDate
   }
 
-  getEventTimeSlots(eventTimeArray) {
+  getEventTimeSlots() {
     let timeSlots = document.createElement('div')
-    for (let i in eventTimeArray) {
+    for (let i in this.event.times) {
       let timeSlot = document.createElement('span')
-      timeSlot.innerHTML = formatTime(eventTimeArray, is24) // TODO: make formatTime function
+      timeSlot.innerHTML = this.event.times[i] // TODO: make formatTime function
       timeSlots.appendChild(timeSlot)
     }
     return timeSlots
   }
 
-  getEventTimeOptions(eventTimeArray) {
+  getEventTimeOptions() {
     let timeOptions = document.createElement('div')
-    for (let i in eventTimeArray) {
+    for (let i in this.event.times) {
       let timeOption = document.createElement('span')
       //TODO: make options
       timeOptions.appendChild(timeOption)
@@ -32,14 +36,23 @@ class EventPage {
     return timeOptions
   }
 
-  getEventInfo(someEvent) {
+  getEventInfo() {
     let eventInfo = document.createElement('div')
 
-    eventInfo.appendChild(getEventName(someEvent.name))
-    eventInfo.appendChild(getEventDate(someEvent.date))
-    eventInfo.appendChild(getEventTimeSlots(someEvent.time))
-    eventInfo.appendChild(getEventTimeOptions(someEvent.time))
+    eventInfo.appendChild(this.getEventName())
+    eventInfo.appendChild(this.getEventDate())
+    eventInfo.appendChild(this.getEventTimeSlots())
+    eventInfo.appendChild(this.getEventTimeOptions())
 
     return eventInfo
   }
 }
+
+$(() => {
+  let event_id = (new URLSearchParams(window.location.search)).get('id')
+  fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
+    if (!event) { /* TODO: Show error and bail */ }
+    let event_page = new EventPage(event)
+    document.body.append(event_page.getEventInfo(event))
+  })
+})
