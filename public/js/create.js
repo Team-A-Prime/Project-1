@@ -11,7 +11,7 @@ class Slot {
     let slots = Calendar.time_slots(this.is24)
     let select = document.createElement('select')
     for (let i in slots) {
-      if (i < exclude) continue
+      if (i < exclude || (exclude == -1 && i == slots.length-1)) continue
       let option = document.createElement('option')
       option.value = i
       option.innerHTML = slots[i]
@@ -22,7 +22,7 @@ class Slot {
   }
 
   createStartSlot() {
-    let slotsel = this.createSlotSelector()
+    let slotsel = this.createSlotSelector(-1)
     slotsel.addEventListener('change', event => {
       let prevTime = +this.selectors.end.value
       this.selectors.end.remove()
@@ -65,7 +65,7 @@ class SlotAdder {
 
   getTimes() {
     // Here be dragons
-    return Array.from(new Set([].concat(...this.slots.map(x => Array.from({length: x.getRange()[1]-x.getRange()[0]+1}, (n,i)=>i+x.getRange()[0])))))
+    return Array.from(new Set([].concat(...this.slots.map(x => Array.from({length: x.getRange()[1]-x.getRange()[0]}, (n,i)=>i+x.getRange()[0]))))).sort((a,b)=>a-b)
   }
 }
 
@@ -76,9 +76,12 @@ $(() => {
   let slot_adder = new SlotAdder()
   $('.slot_button_wrap')[0].appendChild(slot_adder.createButton())
 
+  let picker = new Pikaday({ field: $('input.date')[0], minDate: new Date(), trigger: $('button#date_picker')[0] })
+
   $('button.submit')[0].addEventListener("click", event => {
     let payload = {
       title: $('input.title')[0].value,
+      name: $('input.name')[0].value,
       date: $('input.date')[0].value,
       time_slots: slot_adder.getTimes()
     }
