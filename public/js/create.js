@@ -1,8 +1,10 @@
 class Slot {
-
   constructor(is24) {
     this.is24 = is24
     this.selectors = {}
+    this.group = document.createElement('div')
+    this.group.appendChild(this.createStartSlot())
+    this.group.appendChild(this.createEndSlot(1))
   }
 
   createSlotSelector(exclude = 0, def) {
@@ -22,13 +24,9 @@ class Slot {
   createStartSlot() {
     let slotsel = this.createSlotSelector()
     slotsel.addEventListener('change', event => {
-      if (!this.selectors.end) {
-        slotsel.parentNode.appendChild(this.createEndSlot(+slotsel.value+1))
-      } else {
-        let prevTime = +this.selectors.end.value
-        this.selectors.end.remove()
-        slotsel.parentNode.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))
-      }
+      let prevTime = +this.selectors.end.value
+      this.selectors.end.remove()
+      slotsel.parentNode.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))
     })
     this.selectors.start = slotsel
     return slotsel
@@ -40,16 +38,16 @@ class Slot {
     return slotsel
   }
 
-  createSlotGroup() {
-    let group = document.createElement('div')
-    group.appendChild(this.createStartSlot())
-    return group
+  getSlotGroup() {
+    return this.group
   }
 
+  getRange() {
+    return [+this.selectors.start.value, +this.selectors.end.value]
+  }
 }
 
-class AddSlot {
-
+class SlotAdder {
   constructor() {
     this.slots = []
   }
@@ -59,9 +57,15 @@ class AddSlot {
     button.innerHTML = 'Add a Time'
     button.addEventListener('click', event => {
       let slot = new Slot($('select.t_format')[0].value == 24)
-      $('.t_slots')[0].appendChild(slot.createSlotGroup())
+      this.slots.push(slot)
+      $('.t_slots')[0].appendChild(slot.getSlotGroup())
     })
     return button
+  }
+
+  getTimes() {
+    // Here be dragons
+    return Array.from(new Set([].concat(...this.slots.map(x => Array.from({length: x.getRange()[1]-x.getRange()[0]+1}, (n,i)=>i+x.getRange()[0])))))
   }
 }
 
@@ -69,6 +73,20 @@ $(() => {
   $('select.t_format')[0].addEventListener("change", event => {
     // TODO: Iterate through all time selectors and convert the format if necessary
   })
-  let add_slot = new AddSlot()
-  $('.slot_button_wrap')[0].appendChild(add_slot.createButton())
+  let slot_adder = new SlotAdder()
+  $('.slot_button_wrap')[0].appendChild(slot_adder.createButton())
+
+  $('button.submit')[0].addEventListener("click", event => {
+    let payload = {
+      title: $('input.title')[0].value,
+      date: $('input.date')[0].value,
+      time_slots: slot_adder.getTimes()
+    }
+    
+    fetch("/api/events/new/", {
+      headers: {'Content-Type': 'application/json'},
+      method: "POST",
+      body: JSON.stringify(payload)
+    })
+  })
 })
