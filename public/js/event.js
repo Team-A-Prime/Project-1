@@ -89,10 +89,20 @@ class EventPage {
       payload.uid = this.event.uid
       payload.name = this.name.value
       payload.times = Array.from($('input[type="checkbox"][value]:checked')).map(el => +el.value)
+      if (!payload.name) {
+        alert("You must enter your name!")
+        return
+      }
       fetch('/api/events/register/', {
         headers: {'Content-Type': 'application/json'},
         method: "POST",
         body: JSON.stringify(payload)
+      }).then(res => res.json()).then(res => {
+        if (res.status != "ok") {
+          alert("Could not contact server, please try again")
+          return
+        }
+        window.location.reload()
       })
     })
     return button
