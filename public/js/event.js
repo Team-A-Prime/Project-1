@@ -56,6 +56,7 @@ export class EventPage {
       tbody.appendChild(tr)
     }
     let utr = document.createElement('tr')
+    utr.className = 'user-tr'
     let utd = document.createElement('td')
     let uinput = document.createElement('input')
     uinput.className = "input is-small"

@@ -55,6 +55,21 @@ input[type="checkbox"]:checked:after {
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
+.user-tr input[type="checkbox"]:before {
+  content: '';
+  display: block;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  top: 12.5px;
+  border: 1px solid #d4d2d2;
+  border-radius: 3px;
+  background: white;
+  left: 12.5px;
+}
+.user-tr input[type="checkbox"]:checked:after {
+  top: -7px;
+}
 .event_page .table_container {
   overflow: scroll;
   margin-bottom: 10px;
