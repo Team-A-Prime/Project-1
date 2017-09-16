@@ -66,7 +66,7 @@ input[type="checkbox"]:checked:after {
   overflow: hidden;
 }
 .event_page input.input {
-  min-width: 90px;
+  min-width: 125px;
 }
 .event_page td, .event_page th {
   width: 40px;
