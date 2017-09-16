@@ -96,3 +96,6 @@ div.event_page, div.admin_page, div.event_list {
 .admin_page input.date.input {
   cursor: default;
 }
+.event_page td.spacer, .event_page th.spacer {
+  width: 5px;
+}

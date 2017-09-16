@@ -17,6 +17,11 @@ export class EventPage {
     let th = document.createElement('th')
     tr.appendChild(th)
     for (let i in this.event.times) {
+      if (i && this.event.times[i]-this.event.times[i-1] > 1) {
+        let spacer = document.createElement('th')
+        spacer.className = 'spacer'
+        tr.appendChild(spacer)
+      }
       let th = document.createElement('th')
       th.innerHTML = slots[this.event.times[i]]
       tr.appendChild(th)
@@ -34,8 +39,10 @@ export class EventPage {
       tr.appendChild(name)
       for (let i in this.event.times) {
         let td = document.createElement('td')
-        if (i && this.event.times[i]-this.event.times[i-1] != 1) {
-          // Create spacer
+        if (i && this.event.times[i]-this.event.times[i-1] > 1) {
+          let spacer = document.createElement('td')
+          spacer.className = 'spacer'
+          tr.appendChild(spacer)
         }
         let checkbox = document.createElement('input')
         checkbox.type = 'checkbox'
@@ -56,11 +63,16 @@ export class EventPage {
     this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
-    for (let i of this.event.times) {
+    for (let i in this.event.times) {
+      if (i && this.event.times[i]-this.event.times[i-1] > 1) {
+        let spacer = document.createElement('td')
+        spacer.className = 'spacer'
+        utr.appendChild(spacer)
+      }
       let td = document.createElement('td')
       let checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
-      checkbox.value = i
+      checkbox.value = this.event.times[i]
       td.appendChild(checkbox)
       utr.appendChild(td)
     }
@@ -70,10 +82,15 @@ export class EventPage {
     ttd.innerHTML = 'Participants'
     ttd.className = 'check_count'
     ttr.appendChild(ttd)
-    for (let i of this.event.times) {
+    for (let i in this.event.times) {
+      if (i && this.event.times[i]-this.event.times[i-1] > 1) {
+        let spacer = document.createElement('td')
+        spacer.className = 'spacer'
+        ttr.appendChild(spacer)
+      }
       let td = document.createElement('td')
       td.className = 'check_count'
-      td.innerHTML = [].concat(...this.event.attendees.map(a=>a.times)).filter(a=>a==i).length
+      td.innerHTML = [].concat(...this.event.attendees.map(a=>a.times)).filter(a=>a==this.event.times[i]).length
       ttr.appendChild(td)
     }
     tbody.appendChild(ttr)
