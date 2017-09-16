@@ -56,6 +56,7 @@ class Slot {
 class SlotAdder {
   constructor() {
     this.slots = []
+    this.is24 = false
   }
 
   createButton() {
@@ -63,7 +64,7 @@ class SlotAdder {
     button.className = "button"
     button.innerHTML = 'Add a Time'
     button.addEventListener('click', event => {
-      let slot = new Slot($('select.t_format')[0].value == 24)
+      let slot = new Slot(this.is24)
       this.slots.push(slot)
       $('.t_slots')[0].appendChild(slot.getSlotGroup())
     })
@@ -77,10 +78,20 @@ class SlotAdder {
 }
 
 $(() => {
-  $('select.t_format')[0].addEventListener("change", event => {
-    // TODO: Iterate through all time selectors and convert the format if necessary
-  })
   let slot_adder = new SlotAdder()
+
+  $('.is24')[0].addEventListener('click', event => {
+    slot_adder.is24 = true
+    $('.is12')[0].className='button is12'
+    $('.is24')[0].className='button is24 is-info'
+  })
+  
+  $('.is12')[0].addEventListener('click', event => {
+    slot_adder.is24 = false
+    $('.is12')[0].className='button is12 is-info'
+    $('.is24')[0].className='button is24'
+  })
+
   $('.slot_button_wrap')[0].appendChild(slot_adder.createButton())
 
   let picker = new Pikaday({ field: $('input.date')[0], minDate: new Date(), trigger: $('button#date_picker')[0] })
@@ -103,7 +114,7 @@ $(() => {
     if (!payload.times.length) {
       payload.times = Array.from({length: 48}).map((_,i)=>i)
     }
-    
+
     fetch("/api/events/new/", {
       headers: {'Content-Type': 'application/json'},
       method: "POST",
