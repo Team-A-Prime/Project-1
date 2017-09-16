@@ -84,12 +84,24 @@ $(() => {
     slot_adder.is24 = true
     $('.is12')[0].className='button is12'
     $('.is24')[0].className='button is24 is-info'
+    let times = Calendar.time_slots(true)
+    $('select').forEach(select => {
+      Array.from(select.children).forEach(option => {
+        option.innerHTML = times[option.value]
+      })
+    })
   })
   
   $('.is12')[0].addEventListener('click', event => {
     slot_adder.is24 = false
     $('.is12')[0].className='button is12 is-info'
     $('.is24')[0].className='button is24'
+    let times = Calendar.time_slots(false)
+    $('select').forEach(select => {
+      Array.from(select.children).forEach(option => {
+        option.innerHTML = times[option.value]
+      })
+    })
   })
 
   $('.slot_button_wrap')[0].appendChild(slot_adder.createButton())
