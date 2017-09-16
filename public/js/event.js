@@ -122,8 +122,8 @@ export class EventPage {
 $(() => {
   let event_id = (new URLSearchParams(window.location.search)).get('id')
   fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
-    event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     if (!event) { /* TODO: Show error and bail */ }
+    event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     let event_page = new EventPage(event)
     $('h1.title')[0].innerHTML = event.name
     $('h2.event_date')[0].innerHTML = event.date

@@ -150,7 +150,7 @@ Database.prototype.read_events = function(callback) {
 Database.prototype.register = function(attendee) {
     this.db.run(
       "INSERT INTO tb_events (uid, key, value, payload) VALUES ( ? , 'attendee', ? , ? );",
-      [attendee.event, attendee.name, attendee.times]
+      [attendee.event, attendee.name, attendee.times.join(',')]
     );
 } // end of Database#register
 
