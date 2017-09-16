@@ -56,7 +56,7 @@ const Event         = require('./event.js');
 
         database.write_event(event);
 
-        res.status(200).json({status: "ok"});
+        res.status(200).json({status: "ok", uid: event.uid});
     });
 
     // API for adding a person to an event
