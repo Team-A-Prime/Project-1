@@ -84,5 +84,5 @@ const Event         = require('./event.js');
     });
 
     // Start the server
-    app.listen(8080);
+    app.listen(process.env.NODE_PORT || 8080);
 })(); // end of anononymous main

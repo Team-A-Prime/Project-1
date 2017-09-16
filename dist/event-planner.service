@@ -1,0 +1,13 @@
+[Unit]
+Description=Event Planner
+After=network.target
+
+[Service]
+Environment=NODE_PORT=8080
+Type=simple
+WorkingDirectory=/opt/local/Project-1/
+ExecStart=/usr/local/bin/npm start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
