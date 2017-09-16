@@ -19,19 +19,18 @@ class EventsPage {
         let deleteButton = document.createElement('button')
         deleteButton.innerHTML = 'delete'
         deleteButton.addEventListener('click', event => {
-          if(confirm("Are you sure you want to delete \'" + this.events[i].name + "\'")) {
-            fetch("/api/events/delete", {
-              headers: {'Content-Type': 'application/json'},
-              method: "POST",
-              body: JSON.stringify({uid:this.events[i].uid})
-            }).then(res => res.json()).then(res => {
-              if (res.status != "ok") {
-                alert("Could not contact server, please try again")
-                return
-              }
-              window.location.reload()
-            })
-          }
+          if (!confirm("Are you sure you want to delete \'" + this.events[i].name + "\'?")) return
+          fetch("/api/events/delete", {
+            headers: {'Content-Type': 'application/json'},
+            method: "POST",
+            body: JSON.stringify({uid:this.events[i].uid})
+          }).then(res => res.json()).then(res => {
+            if (res.status != "ok") {
+              alert("Could not contact server, please try again")
+              return
+            }
+            window.location.reload()
+          })
         })
 
         divRow.appendChild(dateText)
