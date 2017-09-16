@@ -64,13 +64,15 @@ class EventPage {
     let utr = document.createElement('tr')
     let utd = document.createElement('td')
     let uinput = document.createElement('input')
+    this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
-    for (let i in this.event.times) {
+    for (let i of this.event.times) {
       let td = document.createElement('td')
       let label = document.createElement('label')
       let checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
+      checkbox.value = i
       label.appendChild(checkbox)
       td.appendChild(label)
       utr.appendChild(td)
@@ -82,12 +84,15 @@ class EventPage {
   createSignupButton() {
     let button = document.createElement('button')
     button.innerHTML = 'Register'
-    // TODO: make button collect info
     button.addEventListener('click', event => {
+      let payload = {}
+      payload.uid = this.event.uid
+      payload.name = this.name.value
+      payload.times = Array.from($('input[type="checkbox"][value]:checked')).map(el => +el.value)
       fetch('/api/events/register/', {
         headers: {'Content-Type': 'application/json'},
         method: "POST",
-        body: JSON.stringify()
+        body: JSON.stringify(payload)
       })
     })
     return button
@@ -110,7 +115,6 @@ $(() => {
   fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     if (!event) { /* TODO: Show error and bail */ }
-    console.log(event)
     let event_page = new EventPage(event)
     document.body.append(event_page.createEventInfo(event))
   })
