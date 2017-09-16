@@ -19,3 +19,46 @@
 .event_list .row button {
   margin-left: auto;
 }
+.event_page table th:not(:first-child) {
+  font-weight: 100;
+  font-size: 12px;
+  text-align: center;
+  padding: 3px;
+}
+.event_page .owner {
+  font-weight: 800;
+}
+input[type="checkbox"] {
+  width: 40px;
+  height: 40px;
+  -webkit-appearance: unset;
+  appearance: unset;
+  background: #feedea;
+  margin: 0px 0.5px -5px;
+  outline: none;
+}
+input[type="checkbox"]:checked {
+  background: #ecf5d6;
+}
+input[type="checkbox"]:checked:after {
+  content: '';
+  display: block;
+  position: relative;
+  top: 10px;
+  left: 17px;
+  width: 10px;
+  height: 17px;
+  border: solid #83c33f;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+.event_page .table_container {
+  overflow: scroll;
+}
+.event_page td:first-child {
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.event_page input.input {
+  min-width: 90px;
+}

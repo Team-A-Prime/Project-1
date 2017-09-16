@@ -3,13 +3,6 @@ class EventPage {
     this.event = event
   }
 
-  createEventName() {
-    let eventName = document.createElement('h1')
-    eventName.innerHTML = this.event.name
-    eventName.className = 'event_title'
-    return eventName
-  }
-
   createEventDate() {
     let eventDate = document.createElement('h3')
     // TODO: Add Date parsing?
@@ -20,12 +13,13 @@ class EventPage {
 
   createAttendeeTable() {
     let slots = Calendar.time_slots(false)
+    let t_cont = document.createElement('div')
+    t_cont.className = "table_container"
     let table = document.createElement('table')
     let tbody = document.createElement('tbody')
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
     let th = document.createElement('th')
-    th.innerHTML = 'Name'
     tr.appendChild(th)
     for (let i in this.event.times) {
       let th = document.createElement('th')
@@ -48,15 +42,13 @@ class EventPage {
         if (i && this.event.times[i]-this.event.times[i-1] != 1) {
           // Create spacer
         }
-        let label = document.createElement('label')
         let checkbox = document.createElement('input')
         checkbox.type = 'checkbox'
         if (attendee.times.includes(this.event.times[i])) {
           checkbox.checked = "checked"
         }
         checkbox.disabled = true
-        label.appendChild(checkbox)
-        td.appendChild(label)
+        td.appendChild(checkbox)
         tr.appendChild(td)
       }
       tbody.appendChild(tr)
@@ -64,26 +56,27 @@ class EventPage {
     let utr = document.createElement('tr')
     let utd = document.createElement('td')
     let uinput = document.createElement('input')
+    uinput.className = "input is-small"
     this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
     for (let i of this.event.times) {
       let td = document.createElement('td')
-      let label = document.createElement('label')
       let checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
       checkbox.value = i
-      label.appendChild(checkbox)
-      td.appendChild(label)
+      td.appendChild(checkbox)
       utr.appendChild(td)
     }
     tbody.appendChild(utr)
-    return table
+    t_cont.appendChild(table)
+    return t_cont
   }
 
   createSignupButton() {
     let button = document.createElement('button')
     button.innerHTML = 'Register'
+    button.className = 'button is-primary'
     button.addEventListener('click', event => {
       let payload = {}
       payload.uid = this.event.uid
@@ -111,7 +104,6 @@ class EventPage {
   createEventInfo() {
     let eventInfo = document.createElement('div')
 
-    eventInfo.appendChild(this.createEventName())
     eventInfo.appendChild(this.createEventDate())
     eventInfo.appendChild(this.createAttendeeTable())
     eventInfo.appendChild(this.createSignupButton())
@@ -126,6 +118,7 @@ $(() => {
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     if (!event) { /* TODO: Show error and bail */ }
     let event_page = new EventPage(event)
-    document.body.append(event_page.createEventInfo(event))
+    $('h1.title')[0].innerHTML = event.name
+    $('.content_card')[0].append(event_page.createEventInfo(event))
   })
 })
