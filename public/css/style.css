@@ -8,3 +8,14 @@
 .pika-table abbr {
   text-decoration: underline;
 }
+.event_list .row {
+  display: flex;
+  margin-bottom: 3px;
+}
+.event_list .row > span {
+  margin-right: 5px;
+  min-width: 145px;
+}
+.event_list .row button {
+  margin-left: auto;
+}

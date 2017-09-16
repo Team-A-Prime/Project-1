@@ -8,6 +8,7 @@ class EventsPage {
     if (this.events && this.events.length) {
       for (let i in this.events) {
         let divRow = document.createElement('div')
+        divRow.className = "row"
 
         let dateText = document.createElement('span')
         dateText.innerHTML = this.events[i].date
@@ -17,7 +18,8 @@ class EventsPage {
         nameText.href = '/event?id=' + this.events[i].uid
 
         let deleteButton = document.createElement('button')
-        deleteButton.innerHTML = 'delete'
+        deleteButton.innerHTML = 'X'
+        deleteButton.className = 'button is-danger is-small is-outlined'
         deleteButton.addEventListener('click', event => {
           if (!confirm("Are you sure you want to delete \'" + this.events[i].name + "\'?")) return
           fetch("/api/events/delete", {
