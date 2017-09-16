@@ -16,8 +16,25 @@ class EventsPage {
         nameText.innerHTML = this.events[i].name
         nameText.href = '/event?id=' + this.events[i].uid
 
+        let deleteButton = document.createElement('button')
+        deleteButton.innerHTML = 'delete'
+        deleteButton.addEventListener('click', event => {
+          fetch("/api/events/delete", {
+            headers: {'Content-Type': 'application/json'},
+            method: "POST",
+            body: JSON.stringify({uid:this.events[i].uid})
+          }).then(res => res.json()).then(res => {
+            if (res.status != "ok") {
+              alert("Could not contact server, please try again")
+              return
+            }
+            window.location.reload()
+          })
+        })
+
         divRow.appendChild(dateText)
         divRow.appendChild(nameText)
+        divRow.appendChild(deleteButton)
         divGroup.appendChild(divRow)
       }
     } else {
