@@ -92,7 +92,7 @@ Database.prototype.read_event = function(uid, callback) {
     let event = new Event();
     let obj   = this;
 
-    this.db.each("SELECT * FROM tb_events WHERE uid = '" + uid + "';", function(err, row) {
+    this.db.each("SELECT * FROM tb_events WHERE uid = ? ;", [uid], function(err, row) {
         event.uid = uid;
         obj.keyval_parse(event, row.key, row.value, row.payload);
         if (typeof event.times === 'string') {
@@ -148,14 +148,10 @@ Database.prototype.read_events = function(callback) {
  * @param: 'attendee', the person to register
  */
 Database.prototype.register = function(attendee) {
-    let query = "INSERT INTO tb_events (uid, key, value, payload) VALUES "
-              + "("
-              + "'" + attendee.event + "', "
-              + "'attendee', "
-              + "'" + attendee.name + "', "
-              + "'" + attendee.times + "'"
-              + " );";
-    this.db.run(query);
+    this.db.run(
+      "INSERT INTO tb_events (uid, key, value, payload) VALUES ( ? , 'attendee', ? , ? );",
+      [attendee.event, attendee.name, attendee.times]
+    );
 } // end of Database#register
 
 /**
@@ -168,19 +164,16 @@ Database.prototype.register = function(attendee) {
 Database.prototype.write_event = function(event) {
     let obj = this;
     let write_keyval = function(key, val) {
-        let query = "INSERT INTO tb_events (uid, key, value) VALUES "
-                  + "("
-                  + "'" + event.uid + "', "
-                  + "'" + key + "', "
-                  + "'" + val + "'"
-                  + " );";
-        obj.db.run(query);
+        obj.db.run(
+          "INSERT INTO tb_events (uid, key, value) VALUES ( ? , ? , ? );",
+          [event.uid, key, val]
+        );
     };
 
     [["name",        event.name],
      ["description", event.description],
      ["date",        event.date],
-     ["times",       event.times],
+     ["times",       event.times.join(',')],
      ["owner",       event.owner]]
      .forEach(function(keyval) {
         write_keyval(keyval[0], keyval[1]);
