@@ -1,3 +1,10 @@
 .submit_container {
   text-align: right;
 }
+.pika-row .pika-button {
+  border-radius: 0;
+  text-align: center;
+}
+.pika-table abbr {
+  text-decoration: underline;
+}
