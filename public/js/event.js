@@ -93,6 +93,12 @@ class EventPage {
         headers: {'Content-Type': 'application/json'},
         method: "POST",
         body: JSON.stringify(payload)
+      }).then(res => res.json()).then(res => {
+        if (res.status != "ok") {
+          alert("Could not contact server, please try again")
+          return
+        }
+        window.location.reload()
       })
     })
     return button
