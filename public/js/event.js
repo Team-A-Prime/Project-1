@@ -3,14 +3,6 @@ class EventPage {
     this.event = event
   }
 
-  createEventDate() {
-    let eventDate = document.createElement('h3')
-    // TODO: Add Date parsing?
-    eventDate.innerHTML = this.event.date
-    eventDate.className = 'event_date'
-    return eventDate
-  }
-
   createAttendeeTable() {
     let slots = Calendar.time_slots(false)
     let t_cont = document.createElement('div')
@@ -57,6 +49,7 @@ class EventPage {
     let utd = document.createElement('td')
     let uinput = document.createElement('input')
     uinput.className = "input is-small"
+    uinput.placeholder = "Your name"
     this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
@@ -69,6 +62,18 @@ class EventPage {
       utr.appendChild(td)
     }
     tbody.appendChild(utr)
+    let ttr = document.createElement('tr')
+    let ttd = document.createElement('td')
+    ttd.innerHTML = 'Participants'
+    ttd.className = 'check_count'
+    ttr.appendChild(ttd)
+    for (let i of this.event.times) {
+      let td = document.createElement('td')
+      td.className = 'check_count'
+      td.innerHTML = [].concat(...this.event.attendees.map(a=>a.times)).filter(a=>a==i).length
+      ttr.appendChild(td)
+    }
+    tbody.appendChild(ttr)
     t_cont.appendChild(table)
     return t_cont
   }
@@ -104,7 +109,6 @@ class EventPage {
   createEventInfo() {
     let eventInfo = document.createElement('div')
 
-    eventInfo.appendChild(this.createEventDate())
     eventInfo.appendChild(this.createAttendeeTable())
     eventInfo.appendChild(this.createSignupButton())
 
@@ -112,13 +116,18 @@ class EventPage {
   }
 }
 
+let a = ''
+
 $(() => {
   let event_id = (new URLSearchParams(window.location.search)).get('id')
   fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     if (!event) { /* TODO: Show error and bail */ }
     let event_page = new EventPage(event)
+    a = event
     $('h1.title')[0].innerHTML = event.name
+    $('h2.event_date')[0].innerHTML = event.date
+    $('h2.subtitle')[0].innerHTML = event.description
     $('.content_card')[0].append(event_page.createEventInfo(event))
   })
 })

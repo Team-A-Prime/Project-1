@@ -28,6 +28,9 @@
 .event_page .owner {
   font-weight: 800;
 }
+.event_page .event_date {
+  float: right;
+}
 input[type="checkbox"] {
   width: 40px;
   height: 40px;
@@ -54,11 +57,41 @@ input[type="checkbox"]:checked:after {
 }
 .event_page .table_container {
   overflow: scroll;
+  margin-bottom: 10px;
 }
 .event_page td:first-child {
   padding-right: 10px;
   vertical-align: middle;
+  max-width: 200px;
+  overflow: hidden;
 }
 .event_page input.input {
   min-width: 90px;
+}
+.event_page td, .event_page th {
+  width: 40px;
+}
+.event_page .check_count {
+  text-align: center;
+  color: green;
+  font-size: 12px;
+}
+.tabs {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+  width: 100%;
+}
+div.event_page, div.admin_page, div.event_list {
+  padding-top: 80px;
+}
+.tabs li a {
+  padding: 1em 1em;
+}
+.tabs li:first-child {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.admin_page input.date.input {
+  cursor: default;
 }

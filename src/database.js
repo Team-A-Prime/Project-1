@@ -76,7 +76,7 @@ Database.prototype.keyval_parse = function(event, key, value, payload) {
     if (key == "attendee") {
         let attendee = {};
         attendee.name  = value;
-        attendee.times = payload;
+        attendee.times = payload?payload.split(',').map(a=>+a):[];
         event.attendees.push(attendee);
     }
 }; // end of function Database#keyval_parse
