@@ -139,12 +139,15 @@ export class EventPage {
 $(() => {
   let event_id = (new URLSearchParams(window.location.search)).get('id')
   fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
-    if (!event) { /* TODO: Show error and bail */ }
+    if (!event) {
+      $('.content_card')[0].innerHTML = "This event does not exist"
+      return
+    }
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     let event_page = new EventPage(event)
     $('h1.title')[0].innerHTML = event.name
     $('h2.event_date')[0].innerHTML = event.date
     $('h2.subtitle')[0].innerHTML = event.description
-    $('.content_card')[0].append(event_page.createEventInfo(event))
+    $('.content_card')[0].appendChild(event_page.createEventInfo(event))
   })
 })
