@@ -89,6 +89,10 @@ class EventPage {
       payload.uid = this.event.uid
       payload.name = this.name.value
       payload.times = Array.from($('input[type="checkbox"][value]:checked')).map(el => +el.value)
+      if (!payload.name) {
+        alert("You must enter your name!")
+        return
+      }
       fetch('/api/events/register/', {
         headers: {'Content-Type': 'application/json'},
         method: "POST",
