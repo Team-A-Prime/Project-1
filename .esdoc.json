@@ -1,0 +1,9 @@
+{
+  "source": "./public/js",
+  "destination": "./docs/public",
+  "includes": ["\\.js$"],
+  "excludes": ["pikaday.js$"],
+  "plugins": [
+    {"name": "esdoc-standard-plugin"}
+  ]
+}

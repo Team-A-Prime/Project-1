@@ -1,4 +1,7 @@
-class EventPage {
+import $ from '/js/init.js'
+import Calendar from '/js/calendar.js'
+
+export class EventPage {
   constructor(event) {
     this.event = event
   }
@@ -116,15 +119,12 @@ class EventPage {
   }
 }
 
-let a = ''
-
 $(() => {
   let event_id = (new URLSearchParams(window.location.search)).get('id')
   fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     if (!event) { /* TODO: Show error and bail */ }
     let event_page = new EventPage(event)
-    a = event
     $('h1.title')[0].innerHTML = event.name
     $('h2.event_date')[0].innerHTML = event.date
     $('h2.subtitle')[0].innerHTML = event.description

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">js/create.js | Project-1</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A web app solution for EECS-448 project 1"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Project-1"><meta property="twitter:description" content="A web app solution for EECS-448 project 1"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/Team-A-Prime/Project-1.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/calendar.js~Calendar.html">Calendar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/create.js~Slot.html">Slot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/create.js~SlotAdder.html">SlotAdder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/event.js~EventPage.html">EventPage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/events.js~EventsPage.html">EventsPage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-$">$</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">js/create.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import $ from &apos;/js/init.js&apos;
+import Calendar from &apos;/js/calendar.js&apos;
+
+export class Slot {
+  constructor(is24) {
+    this.is24 = is24
+    this.selectors = {}
+    this.group = document.createElement(&apos;div&apos;)
+    this.start_span = document.createElement(&apos;span&apos;)
+    this.start_span.className = &quot;select&quot;
+    this.start_span.appendChild(this.createStartSlot())
+    this.group.appendChild(this.start_span)
+    this.end_span = document.createElement(&apos;span&apos;)
+    this.end_span.className = &quot;select&quot;
+    this.end_span.appendChild(this.createEndSlot(1))
+    this.group.appendChild(this.end_span)
+  }
+
+  createSlotSelector(exclude = 0, def) {
+    let slots = Calendar.time_slots(this.is24)
+    let select = document.createElement(&apos;select&apos;)
+    for (let i in slots) {
+      if (i &lt; exclude || (exclude == -1 &amp;&amp; i == slots.length-1)) continue
+      let option = document.createElement(&apos;option&apos;)
+      option.value = i
+      option.innerHTML = slots[i]
+      select.appendChild(option)
+    }
+    if (def &amp;&amp; def &gt;= exclude) select.value = def
+    return select
+  }
+
+  createStartSlot() {
+    let slotsel = this.createSlotSelector(-1)
+    slotsel.addEventListener(&apos;change&apos;, event =&gt; {
+      let prevTime = +this.selectors.end.value
+      this.selectors.end.remove()
+      this.end_span.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))
+    })
+    this.selectors.start = slotsel
+    return slotsel
+  }
+
+  createEndSlot(exclude = 0, def) {
+    let slotsel = this.createSlotSelector(exclude, def)
+    this.selectors.end = slotsel
+    return slotsel
+  }
+
+  getSlotGroup() {
+    return this.group
+  }
+
+  getRange() {
+    return [+this.selectors.start.value, +this.selectors.end.value]
+  }
+}
+
+export class SlotAdder {
+  constructor() {
+    this.slots = []
+    this.is24 = false
+  }
+
+  createButton() {
+    let button = document.createElement(&apos;button&apos;)
+    button.className = &quot;button&quot;
+    button.innerHTML = &apos;Add a Time&apos;
+    button.addEventListener(&apos;click&apos;, event =&gt; {
+      let slot = new Slot(this.is24)
+      this.slots.push(slot)
+      $(&apos;.t_slots&apos;)[0].appendChild(slot.getSlotGroup())
+    })
+    return button
+  }
+
+  getTimes() {
+    // Here be dragons
+    return Array.from(new Set([].concat(...this.slots.map(x =&gt; Array.from({length: x.getRange()[1]-x.getRange()[0]}, (n,i)=&gt;i+x.getRange()[0]))))).sort((a,b)=&gt;a-b)
+  }
+}
+
+$(() =&gt; {
+  let slot_adder = new SlotAdder()
+
+  $(&apos;.is24&apos;)[0].addEventListener(&apos;click&apos;, event =&gt; {
+    slot_adder.is24 = true
+    $(&apos;.is12&apos;)[0].className=&apos;button is12&apos;
+    $(&apos;.is24&apos;)[0].className=&apos;button is24 is-info&apos;
+    let times = Calendar.time_slots(true)
+    $(&apos;select&apos;).forEach(select =&gt; {
+      Array.from(select.children).forEach(option =&gt; {
+        option.innerHTML = times[option.value]
+      })
+    })
+  })
+  
+  $(&apos;.is12&apos;)[0].addEventListener(&apos;click&apos;, event =&gt; {
+    slot_adder.is24 = false
+    $(&apos;.is12&apos;)[0].className=&apos;button is12 is-info&apos;
+    $(&apos;.is24&apos;)[0].className=&apos;button is24&apos;
+    let times = Calendar.time_slots(false)
+    $(&apos;select&apos;).forEach(select =&gt; {
+      Array.from(select.children).forEach(option =&gt; {
+        option.innerHTML = times[option.value]
+      })
+    })
+  })
+
+  $(&apos;.slot_button_wrap&apos;)[0].appendChild(slot_adder.createButton())
+
+  let picker = new Pikaday({ field: $(&apos;input.date&apos;)[0], minDate: new Date(), trigger: $(&apos;button#date_picker&apos;)[0] })
+
+  $(&apos;button.submit&apos;)[0].addEventListener(&quot;click&quot;, event =&gt; {
+    let payload = {
+      name: $(&apos;input.intitle&apos;)[0].value,
+      description: $(&apos;input.description&apos;)[0].value,
+      date: $(&apos;input.date&apos;)[0].value,
+      owner: $(&apos;input.name&apos;)[0].value,
+      times: slot_adder.getTimes()
+    }
+
+    for (let i of [&apos;title&apos;, &apos;name&apos;, &apos;date&apos;]) {
+      if (!payload[i.replace(&apos;name&apos;,&apos;owner&apos;).replace(&apos;title&apos;,&apos;name&apos;)]) {
+        alert(&quot;You need to enter a &quot;+i+&quot;!&quot;)
+        return
+      }
+    }
+    if (!payload.times.length) {
+      payload.times = Array.from({length: 48}).map((_,i)=&gt;i)
+    }
+
+    fetch(&quot;/api/events/new/&quot;, {
+      headers: {&apos;Content-Type&apos;: &apos;application/json&apos;},
+      method: &quot;POST&quot;,
+      body: JSON.stringify(payload)
+    }).then(res =&gt; res.json()).then(res =&gt; {
+      if (res.status != &quot;ok&quot;) {
+        alert(&quot;Could not contact server, please try again&quot;)
+        return
+      }
+      window.location.href = &apos;/event/?id=&apos;+res.uid
+    })
+  })
+})
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

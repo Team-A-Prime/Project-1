@@ -1,4 +1,6 @@
-class EventsPage {
+import $ from '/js/init.js'
+
+export class EventsPage {
   constructor(event_list) {
     this.events = event_list.sort((e1, e2) => (new Date(e1.date)).getTime() - (new Date(e2.date)).getTime())
   }

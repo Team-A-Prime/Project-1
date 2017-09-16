@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">js/event.js | Project-1</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A web app solution for EECS-448 project 1"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Project-1"><meta property="twitter:description" content="A web app solution for EECS-448 project 1"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/Team-A-Prime/Project-1.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/calendar.js~Calendar.html">Calendar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/create.js~Slot.html">Slot</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/create.js~SlotAdder.html">SlotAdder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/event.js~EventPage.html">EventPage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/js/events.js~EventsPage.html">EventsPage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-$">$</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">js/event.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import $ from &apos;/js/init.js&apos;
+import Calendar from &apos;/js/calendar.js&apos;
+
+export class EventPage {
+  constructor(event) {
+    this.event = event
+  }
+
+  createAttendeeTable() {
+    let slots = Calendar.time_slots(false)
+    let t_cont = document.createElement(&apos;div&apos;)
+    t_cont.className = &quot;table_container&quot;
+    let table = document.createElement(&apos;table&apos;)
+    let tbody = document.createElement(&apos;tbody&apos;)
+    let thead = document.createElement(&apos;thead&apos;)
+    let tr = document.createElement(&apos;tr&apos;)
+    let th = document.createElement(&apos;th&apos;)
+    tr.appendChild(th)
+    for (let i in this.event.times) {
+      let th = document.createElement(&apos;th&apos;)
+      th.innerHTML = slots[this.event.times[i]]
+      tr.appendChild(th)
+    }
+    thead.appendChild(tr)
+    table.appendChild(thead)
+    table.appendChild(tbody)
+    for (let attendee of this.event.attendees) {
+      let tr = document.createElement(&apos;tr&apos;)
+      let name = document.createElement(&apos;td&apos;)
+      if (attendee.name == this.event.owner) {
+        name.className = &quot;owner&quot;
+      }
+      name.innerHTML = attendee.name
+      tr.appendChild(name)
+      for (let i in this.event.times) {
+        let td = document.createElement(&apos;td&apos;)
+        if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] != 1) {
+          // Create spacer
+        }
+        let checkbox = document.createElement(&apos;input&apos;)
+        checkbox.type = &apos;checkbox&apos;
+        if (attendee.times.includes(this.event.times[i])) {
+          checkbox.checked = &quot;checked&quot;
+        }
+        checkbox.disabled = true
+        td.appendChild(checkbox)
+        tr.appendChild(td)
+      }
+      tbody.appendChild(tr)
+    }
+    let utr = document.createElement(&apos;tr&apos;)
+    let utd = document.createElement(&apos;td&apos;)
+    let uinput = document.createElement(&apos;input&apos;)
+    uinput.className = &quot;input is-small&quot;
+    uinput.placeholder = &quot;Your name&quot;
+    this.name = uinput
+    utd.appendChild(uinput)
+    utr.appendChild(utd)
+    for (let i of this.event.times) {
+      let td = document.createElement(&apos;td&apos;)
+      let checkbox = document.createElement(&apos;input&apos;)
+      checkbox.type = &apos;checkbox&apos;
+      checkbox.value = i
+      td.appendChild(checkbox)
+      utr.appendChild(td)
+    }
+    tbody.appendChild(utr)
+    let ttr = document.createElement(&apos;tr&apos;)
+    let ttd = document.createElement(&apos;td&apos;)
+    ttd.innerHTML = &apos;Participants&apos;
+    ttd.className = &apos;check_count&apos;
+    ttr.appendChild(ttd)
+    for (let i of this.event.times) {
+      let td = document.createElement(&apos;td&apos;)
+      td.className = &apos;check_count&apos;
+      td.innerHTML = [].concat(...this.event.attendees.map(a=&gt;a.times)).filter(a=&gt;a==i).length
+      ttr.appendChild(td)
+    }
+    tbody.appendChild(ttr)
+    t_cont.appendChild(table)
+    return t_cont
+  }
+
+  createSignupButton() {
+    let button = document.createElement(&apos;button&apos;)
+    button.innerHTML = &apos;Register&apos;
+    button.className = &apos;button is-primary&apos;
+    button.addEventListener(&apos;click&apos;, event =&gt; {
+      let payload = {}
+      payload.uid = this.event.uid
+      payload.name = this.name.value
+      payload.times = Array.from($(&apos;input[type=&quot;checkbox&quot;][value]:checked&apos;)).map(el =&gt; +el.value)
+      if (!payload.name) {
+        alert(&quot;You must enter your name!&quot;)
+        return
+      }
+      fetch(&apos;/api/events/register/&apos;, {
+        headers: {&apos;Content-Type&apos;: &apos;application/json&apos;},
+        method: &quot;POST&quot;,
+        body: JSON.stringify(payload)
+      }).then(res =&gt; res.json()).then(res =&gt; {
+        if (res.status != &quot;ok&quot;) {
+          alert(&quot;Could not contact server, please try again&quot;)
+          return
+        }
+        window.location.reload()
+      })
+    })
+    return button
+  }
+
+  createEventInfo() {
+    let eventInfo = document.createElement(&apos;div&apos;)
+
+    eventInfo.appendChild(this.createAttendeeTable())
+    eventInfo.appendChild(this.createSignupButton())
+
+    return eventInfo
+  }
+}
+
+$(() =&gt; {
+  let event_id = (new URLSearchParams(window.location.search)).get(&apos;id&apos;)
+  fetch(&apos;/api/events/?uid=&apos;+event_id).then(res =&gt; res.json()).then(event =&gt; {
+    event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
+    if (!event) { /* TODO: Show error and bail */ }
+    let event_page = new EventPage(event)
+    $(&apos;h1.title&apos;)[0].innerHTML = event.name
+    $(&apos;h2.event_date&apos;)[0].innerHTML = event.date
+    $(&apos;h2.subtitle&apos;)[0].innerHTML = event.description
+    $(&apos;.content_card&apos;)[0].append(event_page.createEventInfo(event))
+  })
+})
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

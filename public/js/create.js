@@ -1,4 +1,7 @@
-class Slot {
+import $ from '/js/init.js'
+import Calendar from '/js/calendar.js'
+
+export class Slot {
   constructor(is24) {
     this.is24 = is24
     this.selectors = {}
@@ -53,7 +56,7 @@ class Slot {
   }
 }
 
-class SlotAdder {
+export class SlotAdder {
   constructor() {
     this.slots = []
     this.is24 = false

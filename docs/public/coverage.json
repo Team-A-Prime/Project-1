@@ -1,0 +1,64 @@
+{
+  "coverage": "9.37%",
+  "expectCount": 32,
+  "actualCount": 3,
+  "files": {
+    "js/calendar.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "js/create.js": {
+      "expectCount": 18,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        13,
+        19,
+        33,
+        44,
+        50,
+        54,
+        59,
+        60,
+        61,
+        62,
+        65,
+        77
+      ]
+    },
+    "js/event.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        6,
+        9,
+        56,
+        84,
+        112
+      ]
+    },
+    "js/events.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        8
+      ]
+    },
+    "js/init.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}

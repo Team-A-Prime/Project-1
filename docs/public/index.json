@@ -1,0 +1,1264 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "js/.external-ecmascript.js",
+    "static": true,
+    "longname": "js/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "js/calendar.js",
+    "content": "/**\n * This is Calendar\n */\nexport\ndefault class Calendar {\n  // Generates times of the day in increments of 30 minutes\n  /**\n   * @param {boolean} is24 - Whether to return 24 hour times or 12 hour.\n   * @return {string[]} an array of 30 minute interval time slots\n   */\n  static time_slots(is24) {\n    return Array.from({length: 49}, (_, i) => {\n      let hour = Math.floor(i/2)\n      let min = ('0'+(30*(i%2))).slice(-2)\n      return (is24) ? (hour%24)+':'+min : ((hour%12)||12)+':'+min+(hour<12||hour==24?' AM':' PM')\n    })\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/public/js/calendar.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Calendar",
+    "memberof": "js/calendar.js",
+    "static": true,
+    "longname": "js/calendar.js~Calendar",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/calendar.js",
+    "importStyle": "Calendar",
+    "description": "This is Calendar",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "method",
+    "name": "time_slots",
+    "memberof": "js/calendar.js~Calendar",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "js/calendar.js~Calendar.time_slots",
+    "access": "public",
+    "description": "",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "is24",
+        "description": "Whether to return 24 hour times or 12 hour."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string[]"
+      ],
+      "spread": false,
+      "description": "an array of 30 minute interval time slots"
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "file",
+    "name": "js/create.js",
+    "content": "import $ from '/js/init.js'\nimport Calendar from '/js/calendar.js'\n\nexport class Slot {\n  constructor(is24) {\n    this.is24 = is24\n    this.selectors = {}\n    this.group = document.createElement('div')\n    this.start_span = document.createElement('span')\n    this.start_span.className = \"select\"\n    this.start_span.appendChild(this.createStartSlot())\n    this.group.appendChild(this.start_span)\n    this.end_span = document.createElement('span')\n    this.end_span.className = \"select\"\n    this.end_span.appendChild(this.createEndSlot(1))\n    this.group.appendChild(this.end_span)\n  }\n\n  createSlotSelector(exclude = 0, def) {\n    let slots = Calendar.time_slots(this.is24)\n    let select = document.createElement('select')\n    for (let i in slots) {\n      if (i < exclude || (exclude == -1 && i == slots.length-1)) continue\n      let option = document.createElement('option')\n      option.value = i\n      option.innerHTML = slots[i]\n      select.appendChild(option)\n    }\n    if (def && def >= exclude) select.value = def\n    return select\n  }\n\n  createStartSlot() {\n    let slotsel = this.createSlotSelector(-1)\n    slotsel.addEventListener('change', event => {\n      let prevTime = +this.selectors.end.value\n      this.selectors.end.remove()\n      this.end_span.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))\n    })\n    this.selectors.start = slotsel\n    return slotsel\n  }\n\n  createEndSlot(exclude = 0, def) {\n    let slotsel = this.createSlotSelector(exclude, def)\n    this.selectors.end = slotsel\n    return slotsel\n  }\n\n  getSlotGroup() {\n    return this.group\n  }\n\n  getRange() {\n    return [+this.selectors.start.value, +this.selectors.end.value]\n  }\n}\n\nexport class SlotAdder {\n  constructor() {\n    this.slots = []\n    this.is24 = false\n  }\n\n  createButton() {\n    let button = document.createElement('button')\n    button.className = \"button\"\n    button.innerHTML = 'Add a Time'\n    button.addEventListener('click', event => {\n      let slot = new Slot(this.is24)\n      this.slots.push(slot)\n      $('.t_slots')[0].appendChild(slot.getSlotGroup())\n    })\n    return button\n  }\n\n  getTimes() {\n    // Here be dragons\n    return Array.from(new Set([].concat(...this.slots.map(x => Array.from({length: x.getRange()[1]-x.getRange()[0]}, (n,i)=>i+x.getRange()[0]))))).sort((a,b)=>a-b)\n  }\n}\n\n$(() => {\n  let slot_adder = new SlotAdder()\n\n  $('.is24')[0].addEventListener('click', event => {\n    slot_adder.is24 = true\n    $('.is12')[0].className='button is12'\n    $('.is24')[0].className='button is24 is-info'\n    let times = Calendar.time_slots(true)\n    $('select').forEach(select => {\n      Array.from(select.children).forEach(option => {\n        option.innerHTML = times[option.value]\n      })\n    })\n  })\n  \n  $('.is12')[0].addEventListener('click', event => {\n    slot_adder.is24 = false\n    $('.is12')[0].className='button is12 is-info'\n    $('.is24')[0].className='button is24'\n    let times = Calendar.time_slots(false)\n    $('select').forEach(select => {\n      Array.from(select.children).forEach(option => {\n        option.innerHTML = times[option.value]\n      })\n    })\n  })\n\n  $('.slot_button_wrap')[0].appendChild(slot_adder.createButton())\n\n  let picker = new Pikaday({ field: $('input.date')[0], minDate: new Date(), trigger: $('button#date_picker')[0] })\n\n  $('button.submit')[0].addEventListener(\"click\", event => {\n    let payload = {\n      name: $('input.intitle')[0].value,\n      description: $('input.description')[0].value,\n      date: $('input.date')[0].value,\n      owner: $('input.name')[0].value,\n      times: slot_adder.getTimes()\n    }\n\n    for (let i of ['title', 'name', 'date']) {\n      if (!payload[i.replace('name','owner').replace('title','name')]) {\n        alert(\"You need to enter a \"+i+\"!\")\n        return\n      }\n    }\n    if (!payload.times.length) {\n      payload.times = Array.from({length: 48}).map((_,i)=>i)\n    }\n\n    fetch(\"/api/events/new/\", {\n      headers: {'Content-Type': 'application/json'},\n      method: \"POST\",\n      body: JSON.stringify(payload)\n    }).then(res => res.json()).then(res => {\n      if (res.status != \"ok\") {\n        alert(\"Could not contact server, please try again\")\n        return\n      }\n      window.location.href = '/event/?id='+res.uid\n    })\n  })\n})\n",
+    "static": true,
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/public/js/create.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 52,
+    "kind": "class",
+    "name": "Slot",
+    "memberof": "js/create.js",
+    "static": true,
+    "longname": "js/create.js~Slot",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/create.js",
+    "importStyle": "{Slot}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 53,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "is24",
+    "memberof": "js/create.js~Slot",
+    "static": false,
+    "longname": "js/create.js~Slot#is24",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "selectors",
+    "memberof": "js/create.js~Slot",
+    "static": false,
+    "longname": "js/create.js~Slot#selectors",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "member",
+    "name": "group",
+    "memberof": "js/create.js~Slot",
+    "static": false,
+    "longname": "js/create.js~Slot#group",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "member",
+    "name": "start_span",
+    "memberof": "js/create.js~Slot",
+    "static": false,
+    "longname": "js/create.js~Slot#start_span",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "member",
+    "name": "end_span",
+    "memberof": "js/create.js~Slot",
+    "static": false,
+    "longname": "js/create.js~Slot#end_span",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "createSlotSelector",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#createSlotSelector",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "params": [
+      {
+        "name": "exclude",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      },
+      {
+        "name": "def",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "createStartSlot",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#createStartSlot",
+    "access": "public",
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "createEndSlot",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#createEndSlot",
+    "access": "public",
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "params": [
+      {
+        "name": "exclude",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 0,
+        "defaultValue": "0"
+      },
+      {
+        "name": "def",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "getSlotGroup",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#getSlotGroup",
+    "access": "public",
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "getRange",
+    "memberof": "js/create.js~Slot",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~Slot#getRange",
+    "access": "public",
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "undefined[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "class",
+    "name": "SlotAdder",
+    "memberof": "js/create.js",
+    "static": true,
+    "longname": "js/create.js~SlotAdder",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/create.js",
+    "importStyle": "{SlotAdder}",
+    "description": null,
+    "lineNumber": 59,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "js/create.js~SlotAdder",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~SlotAdder#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "member",
+    "name": "slots",
+    "memberof": "js/create.js~SlotAdder",
+    "static": false,
+    "longname": "js/create.js~SlotAdder#slots",
+    "access": "public",
+    "description": null,
+    "lineNumber": 61,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "member",
+    "name": "is24",
+    "memberof": "js/create.js~SlotAdder",
+    "static": false,
+    "longname": "js/create.js~SlotAdder#is24",
+    "access": "public",
+    "description": null,
+    "lineNumber": 62,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "createButton",
+    "memberof": "js/create.js~SlotAdder",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~SlotAdder#createButton",
+    "access": "public",
+    "description": null,
+    "lineNumber": 65,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "getTimes",
+    "memberof": "js/create.js~SlotAdder",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/create.js~SlotAdder#getTimes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "js/event.js",
+    "content": "import $ from '/js/init.js'\nimport Calendar from '/js/calendar.js'\n\nexport class EventPage {\n  constructor(event) {\n    this.event = event\n  }\n\n  createAttendeeTable() {\n    let slots = Calendar.time_slots(false)\n    let t_cont = document.createElement('div')\n    t_cont.className = \"table_container\"\n    let table = document.createElement('table')\n    let tbody = document.createElement('tbody')\n    let thead = document.createElement('thead')\n    let tr = document.createElement('tr')\n    let th = document.createElement('th')\n    tr.appendChild(th)\n    for (let i in this.event.times) {\n      let th = document.createElement('th')\n      th.innerHTML = slots[this.event.times[i]]\n      tr.appendChild(th)\n    }\n    thead.appendChild(tr)\n    table.appendChild(thead)\n    table.appendChild(tbody)\n    for (let attendee of this.event.attendees) {\n      let tr = document.createElement('tr')\n      let name = document.createElement('td')\n      if (attendee.name == this.event.owner) {\n        name.className = \"owner\"\n      }\n      name.innerHTML = attendee.name\n      tr.appendChild(name)\n      for (let i in this.event.times) {\n        let td = document.createElement('td')\n        if (i && this.event.times[i]-this.event.times[i-1] != 1) {\n          // Create spacer\n        }\n        let checkbox = document.createElement('input')\n        checkbox.type = 'checkbox'\n        if (attendee.times.includes(this.event.times[i])) {\n          checkbox.checked = \"checked\"\n        }\n        checkbox.disabled = true\n        td.appendChild(checkbox)\n        tr.appendChild(td)\n      }\n      tbody.appendChild(tr)\n    }\n    let utr = document.createElement('tr')\n    let utd = document.createElement('td')\n    let uinput = document.createElement('input')\n    uinput.className = \"input is-small\"\n    uinput.placeholder = \"Your name\"\n    this.name = uinput\n    utd.appendChild(uinput)\n    utr.appendChild(utd)\n    for (let i of this.event.times) {\n      let td = document.createElement('td')\n      let checkbox = document.createElement('input')\n      checkbox.type = 'checkbox'\n      checkbox.value = i\n      td.appendChild(checkbox)\n      utr.appendChild(td)\n    }\n    tbody.appendChild(utr)\n    let ttr = document.createElement('tr')\n    let ttd = document.createElement('td')\n    ttd.innerHTML = 'Participants'\n    ttd.className = 'check_count'\n    ttr.appendChild(ttd)\n    for (let i of this.event.times) {\n      let td = document.createElement('td')\n      td.className = 'check_count'\n      td.innerHTML = [].concat(...this.event.attendees.map(a=>a.times)).filter(a=>a==i).length\n      ttr.appendChild(td)\n    }\n    tbody.appendChild(ttr)\n    t_cont.appendChild(table)\n    return t_cont\n  }\n\n  createSignupButton() {\n    let button = document.createElement('button')\n    button.innerHTML = 'Register'\n    button.className = 'button is-primary'\n    button.addEventListener('click', event => {\n      let payload = {}\n      payload.uid = this.event.uid\n      payload.name = this.name.value\n      payload.times = Array.from($('input[type=\"checkbox\"][value]:checked')).map(el => +el.value)\n      if (!payload.name) {\n        alert(\"You must enter your name!\")\n        return\n      }\n      fetch('/api/events/register/', {\n        headers: {'Content-Type': 'application/json'},\n        method: \"POST\",\n        body: JSON.stringify(payload)\n      }).then(res => res.json()).then(res => {\n        if (res.status != \"ok\") {\n          alert(\"Could not contact server, please try again\")\n          return\n        }\n        window.location.reload()\n      })\n    })\n    return button\n  }\n\n  createEventInfo() {\n    let eventInfo = document.createElement('div')\n\n    eventInfo.appendChild(this.createAttendeeTable())\n    eventInfo.appendChild(this.createSignupButton())\n\n    return eventInfo\n  }\n}\n\n$(() => {\n  let event_id = (new URLSearchParams(window.location.search)).get('id')\n  fetch('/api/events/?uid='+event_id).then(res => res.json()).then(event => {\n    event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)\n    if (!event) { /* TODO: Show error and bail */ }\n    let event_page = new EventPage(event)\n    $('h1.title')[0].innerHTML = event.name\n    $('h2.event_date')[0].innerHTML = event.date\n    $('h2.subtitle')[0].innerHTML = event.description\n    $('.content_card')[0].append(event_page.createEventInfo(event))\n  })\n})\n",
+    "static": true,
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/public/js/event.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "class",
+    "name": "EventPage",
+    "memberof": "js/event.js",
+    "static": true,
+    "longname": "js/event.js~EventPage",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/event.js",
+    "importStyle": "{EventPage}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 72,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "js/event.js~EventPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/event.js~EventPage#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "member",
+    "name": "event",
+    "memberof": "js/event.js~EventPage",
+    "static": false,
+    "longname": "js/event.js~EventPage#event",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "method",
+    "name": "createAttendeeTable",
+    "memberof": "js/event.js~EventPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/event.js~EventPage#createAttendeeTable",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "member",
+    "name": "name",
+    "memberof": "js/event.js~EventPage",
+    "static": false,
+    "longname": "js/event.js~EventPage#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "method",
+    "name": "createSignupButton",
+    "memberof": "js/event.js~EventPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/event.js~EventPage#createSignupButton",
+    "access": "public",
+    "description": null,
+    "lineNumber": 84,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "createEventInfo",
+    "memberof": "js/event.js~EventPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/event.js~EventPage#createEventInfo",
+    "access": "public",
+    "description": null,
+    "lineNumber": 112,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "file",
+    "name": "js/events.js",
+    "content": "import $ from '/js/init.js'\n\nexport class EventsPage {\n  constructor(event_list) {\n    this.events = event_list.sort((e1, e2) => (new Date(e1.date)).getTime() - (new Date(e2.date)).getTime())\n  }\n\n  createEventList() {\n    let divGroup = document.createElement('div')\n    if (this.events && this.events.length) {\n      for (let i in this.events) {\n        let divRow = document.createElement('div')\n        divRow.className = \"row\"\n\n        let dateText = document.createElement('span')\n        dateText.innerHTML = this.events[i].date\n\n        let nameText = document.createElement('a')\n        nameText.innerHTML = this.events[i].name\n        nameText.href = '/event?id=' + this.events[i].uid\n\n        let deleteButton = document.createElement('button')\n        deleteButton.innerHTML = 'X'\n        deleteButton.className = 'button is-danger is-small is-outlined'\n        deleteButton.addEventListener('click', event => {\n          if (!confirm(\"Are you sure you want to delete \\'\" + this.events[i].name + \"\\'?\")) return\n          fetch(\"/api/events/delete\", {\n            headers: {'Content-Type': 'application/json'},\n            method: \"POST\",\n            body: JSON.stringify({uid:this.events[i].uid})\n          }).then(res => res.json()).then(res => {\n            if (res.status != \"ok\") {\n              alert(\"Could not contact server, please try again\")\n              return\n            }\n            window.location.reload()\n          })\n        })\n\n        divRow.appendChild(dateText)\n        divRow.appendChild(nameText)\n        divRow.appendChild(deleteButton)\n        divGroup.appendChild(divRow)\n      }\n    } else {\n      let err = document.createElement('a')\n      err.innerHTML = 'No Events'\n      divGroup.appendChild(err)\n    }\n    return divGroup\n  }\n}\n\n$(() => {\n  fetch('/api/events/').then(res => res.json()).then(event_list => {\n    let events_page = new EventsPage(event_list)\n    $('.content_card')[0].appendChild(events_page.createEventList())\n  })\n})\n",
+    "static": true,
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/public/js/events.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 79,
+    "kind": "class",
+    "name": "EventsPage",
+    "memberof": "js/events.js",
+    "static": true,
+    "longname": "js/events.js~EventsPage",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/events.js",
+    "importStyle": "{EventsPage}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 80,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "js/events.js~EventsPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/events.js~EventsPage#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 81,
+    "kind": "member",
+    "name": "events",
+    "memberof": "js/events.js~EventsPage",
+    "static": false,
+    "longname": "js/events.js~EventsPage#events",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "method",
+    "name": "createEventList",
+    "memberof": "js/events.js~EventsPage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "js/events.js~EventsPage#createEventList",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "file",
+    "name": "js/init.js",
+    "content": "/**\n * A lightweight JQuery-like shim\n * @param {(string|function)} input - String: An element query selector, Function: a function to be run on page load\n * @return {NodeList} A list of matching nodes if input was query selector\n */\nexport\ndefault function $(input) {\n  if (typeof(input) === 'string') return document.querySelectorAll(input)\n  if (typeof(input) === 'function') document.addEventListener('DOMContentLoaded', input)\n}\n",
+    "static": true,
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/public/js/init.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 84,
+    "kind": "function",
+    "name": "$",
+    "memberof": "js/init.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "js/init.js~$",
+    "access": "public",
+    "export": true,
+    "importPath": "Project-1/js/init.js",
+    "importStyle": "$",
+    "description": "A lightweight JQuery-like shim",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string",
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "input",
+        "description": "String: An element query selector, Function: a function to be run on page load"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NodeList"
+      ],
+      "spread": false,
+      "description": "A list of matching nodes if input was query selector"
+    }
+  },
+  {
+    "kind": "index",
+    "content": "",
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"Project-1\",\n  \"version\": \"0.0.0\",\n  \"description\": \"A web app solution for EECS-448 project 1\",\n  \"main\": \"src/app.js\",\n  \"dependencies\": {\n    \"body-parser\": \"^1.18.1\",\n    \"esdoc\": \"^1.0.2\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"express\": \"^4.15.4\",\n    \"mocha\": \"^3.5.0\",\n    \"sqlite3\": \"^3.1.10\"\n  },\n  \"devDependencies\": {},\n  \"scripts\": {\n    \"start\": \"node ./src/app.js\",\n    \"test\": \"mocha\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/Team-A-Prime/Project-1.git\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/Team-A-Prime/Project-1/issues\"\n  }\n}\n",
+    "longname": "/Users/Ben/Documents/Uni/EECS_448/Project-1/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
