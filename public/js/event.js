@@ -19,9 +19,9 @@ class EventPage {
   }
 
   createAttendeeTable() {
+    let slots = Calendar.time_slots(false)
     let table = document.createElement('table')
     let tbody = document.createElement('tbody')
-    table.appendChild(tbody)
     let thead = document.createElement('thead')
     let tr = document.createElement('tr')
     let th = document.createElement('th')
@@ -29,11 +29,12 @@ class EventPage {
     tr.appendChild(th)
     for (let i in this.event.times) {
       let th = document.createElement('th')
-      th.innerHTML = this.event.times[i]
+      th.innerHTML = slots[this.event.times[i]]
       tr.appendChild(th)
     }
     thead.appendChild(tr)
     table.appendChild(thead)
+    table.appendChild(tbody)
     for (let attendee of this.event.attendees) {
       let tr = document.createElement('tr')
       let name = document.createElement('td')
@@ -47,13 +48,15 @@ class EventPage {
         if (i && this.event.times[i]-this.event.times[i-1] != 1) {
           // Create spacer
         }
+        let label = document.createElement('label')
         let checkbox = document.createElement('input')
         checkbox.type = 'checkbox'
         if (attendee.times.includes(this.event.times[i])) {
           checkbox.checked = "checked"
         }
         checkbox.disabled = true
-        td.appendChild(checkbox)
+        label.appendChild(checkbox)
+        td.appendChild(label)
         tr.appendChild(td)
       }
       tbody.appendChild(tr)
@@ -65,9 +68,11 @@ class EventPage {
     utr.appendChild(utd)
     for (let i in this.event.times) {
       let td = document.createElement('td')
+      let label = document.createElement('label')
       let checkbox = document.createElement('input')
       checkbox.type = 'checkbox'
-      td.appendChild(checkbox)
+      label.appendChild(checkbox)
+      td.appendChild(label)
       utr.appendChild(td)
     }
     tbody.appendChild(utr)
