@@ -7,22 +7,45 @@
     <script type="text/javascript" src="/js/pikaday.js"></script>
     <script type="text/javascript" src="/js/create.js"></script>
     <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="/css/bulma.css">
     <link type="text/css" rel="stylesheet" href="/css/pikaday.css">
   </head>
-  <body class="admin_page">
-    <div class="content_card">
-      Title: <input class="title"><br>
-      Description: <input class="description"><br>
-      Your Name: <input class="name"><br>
-      Date: <input class="date" disabled>
-      <button id="date_picker">Choose Date</button><br>
-      Time Format: <select class="t_format">
-        <option value="12">12 Hour</option>
-        <option value="24">24 Hour</option>
-      </select><br>
-      <div class="t_slots"></div>
+  <body class="admin_page column is-half is-offset-one-quarter">
+    <h1 class="title">Create an Event</h1>
+    <div class="content_card box">
+      <div class="field">
+        <label class="label">Title</label>
+        <input class="intitle input"><br>
+      </div>
+      <div class="field">
+        <label class="label">Description</label>
+        <input class="description input"><br>
+      </div>
+      <div class="field">
+        <label class="label">Your Name</label>
+        <input class="name input"><br>
+      </div>
+      <div class="field">
+        <label class="label">Date</label>
+        <div class="field has-addons">
+          <div class="control"><input class="date input" disabled></div>
+          <div class="control"><button id="date_picker" class="button">Choose Date</button></div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Time Format</label>
+        <span class="select">
+          <select class="t_format">
+            <option value="12">12 Hour</option>
+            <option value="24">24 Hour</option>
+          </select>
+        </span>
+      </div>
+      <div class="t_slots field"></div>
       <div class="slot_button_wrap"></div>
-      <button class="submit">Submit</button>
+      <div class="submit_container">
+        <button class="submit button is-primary">Submit</button>
+      </div>
     </div>
   </body>
 </html>

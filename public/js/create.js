@@ -3,8 +3,14 @@ class Slot {
     this.is24 = is24
     this.selectors = {}
     this.group = document.createElement('div')
-    this.group.appendChild(this.createStartSlot())
-    this.group.appendChild(this.createEndSlot(1))
+    this.start_span = document.createElement('span')
+    this.start_span.className = "select"
+    this.start_span.appendChild(this.createStartSlot())
+    this.group.appendChild(this.start_span)
+    this.end_span = document.createElement('span')
+    this.end_span.className = "select"
+    this.end_span.appendChild(this.createEndSlot(1))
+    this.group.appendChild(this.end_span)
   }
 
   createSlotSelector(exclude = 0, def) {
@@ -26,7 +32,7 @@ class Slot {
     slotsel.addEventListener('change', event => {
       let prevTime = +this.selectors.end.value
       this.selectors.end.remove()
-      slotsel.parentNode.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))
+      this.end_span.appendChild(this.createEndSlot(+slotsel.value+1, Math.max(prevTime, +slotsel.value+1)))
     })
     this.selectors.start = slotsel
     return slotsel
@@ -54,6 +60,7 @@ class SlotAdder {
 
   createButton() {
     let button = document.createElement('button')
+    button.className = "button"
     button.innerHTML = 'Add a Time'
     button.addEventListener('click', event => {
       let slot = new Slot($('select.t_format')[0].value == 24)
@@ -80,7 +87,7 @@ $(() => {
 
   $('button.submit')[0].addEventListener("click", event => {
     let payload = {
-      name: $('input.title')[0].value,
+      name: $('input.intitle')[0].value,
       description: $('input.description')[0].value,
       date: $('input.date')[0].value,
       owner: $('input.name')[0].value,
