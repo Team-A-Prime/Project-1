@@ -64,6 +64,7 @@ input[type="checkbox"]:checked:after {
   vertical-align: middle;
   max-width: 200px;
   overflow: hidden;
+  line-height: 18px;
 }
 .event_page input.input {
   min-width: 125px;
