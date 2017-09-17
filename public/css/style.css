@@ -118,3 +118,9 @@ div.below-navbar {
    width: 24px;
    height: 24px;
 }
+.tabs big > big > b {
+  color: #a2a2a2;
+}
+.tabs li a {
+  color: #212121;
+}
