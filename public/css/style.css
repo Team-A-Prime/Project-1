@@ -114,3 +114,7 @@ div.event_page, div.admin_page, div.event_list {
 .event_page td.spacer, .event_page th.spacer {
   width: 5px;
 }
+.github-image {
+   width: 24px;
+   height: 24px;
+}
