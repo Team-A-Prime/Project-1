@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | Project-1</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A web app solution for EECS-448 project 1"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Project-1"><meta property="twitter:description" content="A web app solution for EECS-448 project 1"></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/Team-A-Prime/Project-1.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/api.html"><a href="manual/api.html" data-ice="link">API Documentation</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/api.html"><a href="manual/api.html#get--code--api-events--code-" data-ice="link">GET /api/events</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/api.html"><a href="manual/api.html#post--code--api-events-new--code-" data-ice="link">POST /api/events/new</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/api.html"><a href="manual/api.html#post--code--api-events-register--code-" data-ice="link">POST /api/events/register</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/api.html"><a href="manual/api.html#post--code--api-events-delete--code-" data-ice="link">POST /api/events/delete</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="api-documentation">API Documentation</h1><p>All POST requests are closed without redirecting the page.</p>
+<h3 id="get--code--api-events--code-">GET <code>/api/events</code></h3><p>Retrieves events from the server.</p>
+<table>
+<thead>
+<tr>
+<th>Request variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uid</code></td>
+<td>string</td>
+<td>The server-assigned event UID. If empty, the server returns every event.</td>
+</tr>
+</tbody>
+</table>
+<p>The return data is a JSON object formatted as:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name of the event</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Description of the event</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>string</td>
+<td>Date of the event (format agnostic)</td>
+</tr>
+<tr>
+<td><code>times</code></td>
+<td>array</td>
+<td>Integer array of the time of the event (0-47)</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>Name of the event owner/creator</td>
+</tr>
+<tr>
+<td><code>attendees</code></td>
+<td>array</td>
+<td>An array of JS objects with two keys: <code>name</code> (string), <code>times</code> (integer array), which describes the attendees and what times they are attending</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post--code--api-events-new--code-">POST <code>/api/events/new</code></h3><p>Creates a new event on the server.</p>
+<table>
+<thead>
+<tr>
+<th>Request variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name of the event</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Description of the event</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>string</td>
+<td>Date of the event (format agnostic)</td>
+</tr>
+<tr>
+<td><code>times</code></td>
+<td>array</td>
+<td>Integer array of the time of the event (0-47)</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>string</td>
+<td>The person who created the event</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post--code--api-events-register--code-">POST <code>/api/events/register</code></h3><p>Registers a person to attend an event</p>
+<table>
+<thead>
+<tr>
+<th>Request variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uid</code></td>
+<td>string</td>
+<td>UID of the event</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Name of the attendee</td>
+</tr>
+<tr>
+<td><code>times</code></td>
+<td>array</td>
+<td>Integer array of the times the user is attending</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post--code--api-events-delete--code-">POST <code>/api/events/delete</code></h3><p>Deletes a given event from the server.</p>
+<table>
+<thead>
+<tr>
+<th>Request variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uid</code></td>
+<td>string</td>
+<td>UID of the event to delete.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,9 +1,17 @@
 {
   "source": "./public/js",
   "destination": "./docs/public",
+  "index": "./README.md",
   "includes": ["\\.js$"],
   "excludes": ["pikaday.js$"],
   "plugins": [
-    {"name": "esdoc-standard-plugin"}
-  ]
+  {
+    "name": "esdoc-standard-plugin",
+    "option": {
+      "manual": {
+        "index": "./docs/api.md",
+        "files": []
+      }
+    }
+  }]
 }
