@@ -40,13 +40,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {EventsPage} from &apos;<span><a href="file/js/events.js.html#lineNumber3">Project-1/js/events.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {EventsPage} from &apos;<span><a href="file/js/events.js.html#lineNumber6">Project-1/js/events.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/js/events.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/js/events.js.html#lineNumber6">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -66,7 +66,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Class for Events Page methods</p>
+</div>
   
 
   
@@ -98,7 +99,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/js/events.js~EventsPage.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/js/events.js~EventsPage.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(event_list: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>)</span>
         </p>
       </div>
       <div>
@@ -168,13 +169,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/js/events.js~EventsPage.html#instance-method-createEventList">createEventList</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/js/events.js~EventsPage.html#instance-method-createEventList">createEventList</a></span></span><span class="code" data-ice="signature">(): <span>Element</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Creates the Event List</p>
+</div>
       </div>
     </td>
     <td>
@@ -200,11 +202,11 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(event_list: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber10">source</a></span></span>
     </span>
   </h3>
 
@@ -215,7 +217,24 @@
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">event_list</td>
+      <td data-ice="type" class="code"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Array of objects containing event information.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
@@ -250,7 +269,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber12">source</a></span></span>
     </span>
   </h3>
 
@@ -292,18 +311,19 @@
     
     
     
-    <span class="code" data-ice="name">createEventList</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">createEventList</span><span class="code" data-ice="signature">(): <span>Element</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/js/events.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Creates the Event List</p>
+</div>
 
   
 
@@ -315,8 +335,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>Element</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>div containing page contents</p>
+</td>
         </tr>
       </tbody>
     </table>

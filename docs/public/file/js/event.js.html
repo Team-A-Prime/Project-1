@@ -42,12 +42,22 @@
 <div class="content" data-ice="content"><h1 data-ice="title">js/event.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import $ from &apos;/js/init.js&apos;
 import Calendar from &apos;/js/calendar.js&apos;
-
+/**
+ * Class for Event Page methods
+ */
 export class EventPage {
+  /**
+   * @param {object} event - Contains event information
+   */
   constructor(event) {
+    /** @member {object} event - Event information */
     this.event = event
   }
 
+  /**
+   * Creates the Attendee table
+   * @return {Element} div containing the Attendee Table
+   */
   createAttendeeTable() {
     let slots = Calendar.time_slots(false)
     let t_cont = document.createElement(&apos;div&apos;)
@@ -59,6 +69,11 @@ export class EventPage {
     let th = document.createElement(&apos;th&apos;)
     tr.appendChild(th)
     for (let i in this.event.times) {
+      if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] &gt; 1) {
+        let spacer = document.createElement(&apos;th&apos;)
+        spacer.className = &apos;spacer&apos;
+        tr.appendChild(spacer)
+      }
       let th = document.createElement(&apos;th&apos;)
       th.innerHTML = slots[this.event.times[i]]
       tr.appendChild(th)
@@ -76,8 +91,10 @@ export class EventPage {
       tr.appendChild(name)
       for (let i in this.event.times) {
         let td = document.createElement(&apos;td&apos;)
-        if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] != 1) {
-          // Create spacer
+        if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] &gt; 1) {
+          let spacer = document.createElement(&apos;td&apos;)
+          spacer.className = &apos;spacer&apos;
+          tr.appendChild(spacer)
         }
         let checkbox = document.createElement(&apos;input&apos;)
         checkbox.type = &apos;checkbox&apos;
@@ -91,18 +108,25 @@ export class EventPage {
       tbody.appendChild(tr)
     }
     let utr = document.createElement(&apos;tr&apos;)
+    utr.className = &apos;user-tr&apos;
     let utd = document.createElement(&apos;td&apos;)
     let uinput = document.createElement(&apos;input&apos;)
     uinput.className = &quot;input is-small&quot;
     uinput.placeholder = &quot;Your name&quot;
+    /** @member {object} name - Text field for user registeration */
     this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
-    for (let i of this.event.times) {
+    for (let i in this.event.times) {
+      if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] &gt; 1) {
+        let spacer = document.createElement(&apos;td&apos;)
+        spacer.className = &apos;spacer&apos;
+        utr.appendChild(spacer)
+      }
       let td = document.createElement(&apos;td&apos;)
       let checkbox = document.createElement(&apos;input&apos;)
       checkbox.type = &apos;checkbox&apos;
-      checkbox.value = i
+      checkbox.value = this.event.times[i]
       td.appendChild(checkbox)
       utr.appendChild(td)
     }
@@ -112,10 +136,15 @@ export class EventPage {
     ttd.innerHTML = &apos;Participants&apos;
     ttd.className = &apos;check_count&apos;
     ttr.appendChild(ttd)
-    for (let i of this.event.times) {
+    for (let i in this.event.times) {
+      if (i &amp;&amp; this.event.times[i]-this.event.times[i-1] &gt; 1) {
+        let spacer = document.createElement(&apos;td&apos;)
+        spacer.className = &apos;spacer&apos;
+        ttr.appendChild(spacer)
+      }
       let td = document.createElement(&apos;td&apos;)
       td.className = &apos;check_count&apos;
-      td.innerHTML = [].concat(...this.event.attendees.map(a=&gt;a.times)).filter(a=&gt;a==i).length
+      td.innerHTML = [].concat(...this.event.attendees.map(a=&gt;a.times)).filter(a=&gt;a==this.event.times[i]).length
       ttr.appendChild(td)
     }
     tbody.appendChild(ttr)
@@ -123,6 +152,10 @@ export class EventPage {
     return t_cont
   }
 
+  /**
+   * Creates the Register button
+   * @return {Element} button for registering a new attendee
+   */
   createSignupButton() {
     let button = document.createElement(&apos;button&apos;)
     button.innerHTML = &apos;Register&apos;
@@ -151,6 +184,10 @@ export class EventPage {
     return button
   }
 
+  /**
+   * Creates a div that contains the Attendee table and Register Button
+   * @return {Element} div containing page contents
+   */
   createEventInfo() {
     let eventInfo = document.createElement(&apos;div&apos;)
 
@@ -164,13 +201,16 @@ export class EventPage {
 $(() =&gt; {
   let event_id = (new URLSearchParams(window.location.search)).get(&apos;id&apos;)
   fetch(&apos;/api/events/?uid=&apos;+event_id).then(res =&gt; res.json()).then(event =&gt; {
+    if (!event) {
+      $(&apos;.content_card&apos;)[0].innerHTML = &quot;This event does not exist&quot;
+      return
+    }
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
-    if (!event) { /* TODO: Show error and bail */ }
     let event_page = new EventPage(event)
     $(&apos;h1.title&apos;)[0].innerHTML = event.name
     $(&apos;h2.event_date&apos;)[0].innerHTML = event.date
     $(&apos;h2.subtitle&apos;)[0].innerHTML = event.description
-    $(&apos;.content_card&apos;)[0].append(event_page.createEventInfo(event))
+    $(&apos;.content_card&apos;)[0].appendChild(event_page.createEventInfo(event))
   })
 })
 </code></pre>

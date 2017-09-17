@@ -1,10 +1,21 @@
 import $ from '/js/init.js'
 
+/**
+ * Class for Events Page methods
+ */
 export class EventsPage {
+  /**
+   * @param {object[]} event_list - Array of objects containing event information.
+   */
   constructor(event_list) {
+    /** @member {object[]} events - List of event objects sorted by date */
     this.events = event_list.sort((e1, e2) => (new Date(e1.date)).getTime() - (new Date(e2.date)).getTime())
   }
 
+  /**
+   * Creates the Event List
+   * @return {Element} div containing page contents
+   */
   createEventList() {
     let divGroup = document.createElement('div')
     if (this.events && this.events.length) {

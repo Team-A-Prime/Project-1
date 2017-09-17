@@ -1,10 +1,10 @@
 /**
- * This is Calendar
+ * Class for containing time related convenienve methods
  */
 export
 default class Calendar {
-  // Generates times of the day in increments of 30 minutes
   /**
+   * Generates times of the day in increments of 30 minutes
    * @param {boolean} is24 - Whether to return 24 hour times or 12 hour.
    * @return {string[]} an array of 30 minute interval time slots
    */

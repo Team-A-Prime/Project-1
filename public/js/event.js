@@ -1,11 +1,21 @@
 import $ from '/js/init.js'
 import Calendar from '/js/calendar.js'
-
+/**
+ * Class for Event Page methods
+ */
 export class EventPage {
+  /**
+   * @param {object} event - Contains event information
+   */
   constructor(event) {
+    /** @member {object} event - Event information */
     this.event = event
   }
 
+  /**
+   * Creates the Attendee table
+   * @return {Element} div containing the Attendee Table
+   */
   createAttendeeTable() {
     let slots = Calendar.time_slots(false)
     let t_cont = document.createElement('div')
@@ -61,6 +71,7 @@ export class EventPage {
     let uinput = document.createElement('input')
     uinput.className = "input is-small"
     uinput.placeholder = "Your name"
+    /** @member {object} name - Text field for user registeration */
     this.name = uinput
     utd.appendChild(uinput)
     utr.appendChild(utd)
@@ -99,6 +110,10 @@ export class EventPage {
     return t_cont
   }
 
+  /**
+   * Creates the Register button
+   * @return {Element} button for registering a new attendee
+   */
   createSignupButton() {
     let button = document.createElement('button')
     button.innerHTML = 'Register'
@@ -127,6 +142,10 @@ export class EventPage {
     return button
   }
 
+  /**
+   * Creates a div that contains the Attendee table and Register Button
+   * @return {Element} div containing page contents
+   */
   createEventInfo() {
     let eventInfo = document.createElement('div')
 

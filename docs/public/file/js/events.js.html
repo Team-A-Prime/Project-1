@@ -42,11 +42,22 @@
 <div class="content" data-ice="content"><h1 data-ice="title">js/events.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import $ from &apos;/js/init.js&apos;
 
+/**
+ * Class for Events Page methods
+ */
 export class EventsPage {
+  /**
+   * @param {object[]} event_list - Array of objects containing event information.
+   */
   constructor(event_list) {
+    /** @member {object[]} events - List of event objects sorted by date */
     this.events = event_list.sort((e1, e2) =&gt; (new Date(e1.date)).getTime() - (new Date(e2.date)).getTime())
   }
 
+  /**
+   * Creates the Event List
+   * @return {Element} div containing page contents
+   */
   createEventList() {
     let divGroup = document.createElement(&apos;div&apos;)
     if (this.events &amp;&amp; this.events.length) {
