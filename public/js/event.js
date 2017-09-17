@@ -45,7 +45,7 @@ export class EventPage {
       if (attendee.name == this.event.owner) {
         name.className = "owner"
       }
-      name.innerHTML = attendee.name
+      name.appendChild(document.createTextNode(attendee.name))
       tr.appendChild(name)
       for (let i in this.event.times) {
         let td = document.createElement('td')
@@ -165,9 +165,9 @@ $(() => {
     }
     event.attendees = [].concat({name: event.owner, times: event.times}, event.attendees)
     let event_page = new EventPage(event)
-    $('h1.title')[0].innerHTML = event.name
-    $('h2.event_date')[0].innerHTML = event.date
-    $('h2.subtitle')[0].innerHTML = event.description
+    $('h1.title')[0].appendChild(document.createTextNode(event.name))
+    $('h2.event_date')[0].appendChild(document.createTextNode(event.date))
+    $('h2.subtitle')[0].appendChild(document.createTextNode(event.description))
     $('.content_card')[0].appendChild(event_page.createEventInfo(event))
   })
 })
