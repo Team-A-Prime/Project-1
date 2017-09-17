@@ -30,6 +30,7 @@ const Event         = require('./event.js');
 
     // Set up routing
     app.use(express.static('./public'))
+    app.use('/docs', express.static('./docs/public'))
 
     // API for getting the current list of events
     app.get('/api/events', function(req, res) {
