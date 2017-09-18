@@ -17,6 +17,10 @@ Documentation for the backend API can be viewed [here](https://448.benhaney.com/
 This project uses the following externally included resources:
 * [Bulma](http://bulma.io/) CSS Framework [MIT]
 * [Pikaday](https://dbushell.com/Pikaday/) calendar widget [MIT]
+* [body-parser](https://www.npmjs.com/package/body-parser) body-parser nodejs plugin [MIT]
+* [esdoc](https://esdoc.org/) Documentation generator [MIT]
+* [express](https://expressjs.com/) Express web server [CC BY-SA 3.0 US]
+* [node-sqlite3](https://github.com/mapbox/node-sqlite3) SQLite bindings for nodejs [BSD]
 
 And the following internally included resources:
 * [Github-logo.png](public/img/gh.png)

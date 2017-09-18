@@ -66,10 +66,10 @@ export class EventsPage {
         divRow.className = &quot;row&quot;
 
         let dateText = document.createElement(&apos;span&apos;)
-        dateText.innerHTML = this.events[i].date
+        dateText.appendChild(document.createTextNode(this.events[i].date))
 
         let nameText = document.createElement(&apos;a&apos;)
-        nameText.innerHTML = this.events[i].name
+        nameText.appendChild(document.createTextNode(this.events[i].name))
         nameText.href = &apos;/event?id=&apos; + this.events[i].uid
 
         let deleteButton = document.createElement(&apos;button&apos;)
