@@ -6,11 +6,11 @@ It is capable of running a website that allows for the creation of persistent ev
 
 ## Documentation
 
-Documentation can be found in the [docs](docs) directory in the project in a raw format, or viewed on the [live website](https://448.benhaney.com/docs/).
+Documentation can be found in the [docs](docs) directory in the project in a raw format, or viewed on the [live website](https://448-1.benhaney.com/docs/).
 
-Documentation coverage can be viewed [here](https://448.benhaney.com/docs/source.html)
+Documentation coverage can be viewed [here](https://448-1.benhaney.com/docs/source.html)
 
-Documentation for the backend API can be viewed [here](https://448.benhaney.com/docs/manual/api.html)
+Documentation for the backend API can be viewed [here](https://448-1.benhaney.com/docs/manual/api.html)
 
 ## Works Cited
 
